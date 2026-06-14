@@ -1,0 +1,29 @@
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
+coverage/
+
+# Python cache and local env
+__pycache__/
+*.py[cod]
+*.tsbuildinfo
+.venv/
+
+# Lagoon local-first data must stay outside git
+.lagoon-data/
+lagoon-data/
+*.sqlite
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+vault/
+media/
+transcripts/
+embeddings/
+
+# Local secrets
+.env
+.env.*
+!.env.example
