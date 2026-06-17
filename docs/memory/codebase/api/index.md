@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Local-only service and storage boundary for Lagoon metadata and vault layout.
+Local-only service and storage boundary for Lagoon metadata and local artifact layout.
 
 ## Contains
 
@@ -21,18 +21,18 @@ Local-only service and storage boundary for Lagoon metadata and vault layout.
 
 ## Dependencies
 
-- Python stdlib only for SP-01.
+- Python stdlib only.
 
 ## Tests
 
 - `npm run verify:sp01`
+- `npm run verify:sp02`
 
 ## Gotchas
 
-- Raw content writes are blocked until encryption provider exists.
-- No API server/provider endpoints in SP-01.
+- Raw content writes are blocked as a safety placeholder; SP-02 adds local-only media artifact file handoff.
+- No API server/provider endpoints.
 
 ## Last Updated
 
-SP-01
-
+SP-02

@@ -1,4 +1,4 @@
-﻿# SP-02 Video + Audio Capture Package
+# SP-02 Video + Audio Capture Package
 
 ## Model
 
@@ -62,13 +62,23 @@ You are the `SP-02` phase agent for Lagoon.
 Load `docs/prompt-packages/SP-02/plan.md` before phase work.
 Execute only that phase plan.
 
-Goal: implement browser-based video + audio capture with chunked encrypted persistence and stable UI states.
+Goal: implement browser-based video + audio capture with local-only file handoff and stable UI states.
 
 Use only the mandatory skills listed above.
 Keep optional skills closed unless a browser or visual trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
-Use only these files in scope:
+Use only these files/folders in scope:
+- `web/`
+- `api/lagoon_local/`
+- `scripts/`
+- `package.json`
+- `web/package.json`
+- `docs/memory/`
+- `docs/run-logs/`
+- `docs/lessons/`
+
+Reference only as needed:
 - `docs/plans/main-orchestration.md`
 - `docs/plans/phase-skill-map.md`
 - `docs/plans/context-and-skill-optimization.md`

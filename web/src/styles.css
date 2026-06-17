@@ -144,6 +144,109 @@ dd {
   color: #17685a;
 }
 
+.capture-panel {
+  display: grid;
+  gap: 18px;
+  margin-top: 32px;
+}
+
+.capture-copy h2 {
+  margin-bottom: 12px;
+}
+
+.capture-message {
+  min-height: 44px;
+  margin-bottom: 0;
+  color: #52616b;
+  line-height: 1.45;
+}
+
+.capture-message[data-status="permission-denied"],
+.capture-message[data-status="interrupted"] {
+  color: #9a3412;
+}
+
+.capture-preview {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #111827;
+  border: 1px solid #263241;
+}
+
+.capture-preview video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.capture-preview span {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 5px 8px;
+  color: #ffffff;
+  background: rgba(17, 24, 39, 0.76);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.capture-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+button,
+.artifact-card a {
+  min-height: 44px;
+  border: 1px solid #b9c3cc;
+  background: #ffffff;
+  color: #1f2933;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  color: #8a98a5;
+  background: #eef1f3;
+}
+
+button:not(:disabled):hover,
+.artifact-card a:hover {
+  border-color: #17685a;
+}
+
+.artifact-card {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  background: #d8dee4;
+  border: 1px solid #d8dee4;
+}
+
+.artifact-card div,
+.artifact-card a {
+  padding: 14px;
+  background: #ffffff;
+}
+
+.artifact-card a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #17685a;
+  text-decoration: none;
+}
+
 @media (max-width: 860px) {
   .lagoon-shell {
     grid-template-columns: 1fr;
@@ -167,5 +270,9 @@ dd {
 
   .boundary-list {
     grid-template-columns: 1fr;
+  }
+
+  .capture-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

@@ -20,6 +20,7 @@ lagoon-data/
 *.db-shm
 vault/
 media/
+*.webm
 transcripts/
 embeddings/
 

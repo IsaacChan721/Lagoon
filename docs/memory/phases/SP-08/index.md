@@ -2,11 +2,10 @@
 
 ## Purpose
 
-Track gated skill/rubric proposals, evaluation-before-enable, approval flow, audit trail, and rollback.
+Track manual post-MVP improvement proposals, evaluation-before-implementation, approval flow, audit trail, and deferral.
 
 ## Expected Codebase Mirrors
 
 - `docs/memory/codebase/api/app/proposals/`
 - `docs/memory/codebase/web/src/proposals/`
-- `docs/memory/codebase/skills/`
-
+- `docs/memory/codebase/proposals/`

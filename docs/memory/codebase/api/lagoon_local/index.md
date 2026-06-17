@@ -20,6 +20,7 @@ Python package for local privacy defaults and persistence boundary.
 - `default_privacy_settings()`
 - `LocalStorageBoundary.ensure_layout()`
 - `LocalStorageBoundary.write_content_blob()`
+- `LocalStorageBoundary.save_media_artifact()`
 
 ## Dependencies
 
@@ -30,12 +31,13 @@ Python package for local privacy defaults and persistence boundary.
 ## Tests
 
 - `npm run verify:sp01`
+- `npm run verify:sp02`
 
 ## Gotchas
 
-- `write_content_blob` raises until encryption/key provider is implemented.
+- `write_content_blob` raises as a safety placeholder.
+- SP-02 media artifact writes are allowed to local-only `media/` and SQLite metadata; no cloud or provider path.
 
 ## Last Updated
 
-SP-01
-
+SP-02

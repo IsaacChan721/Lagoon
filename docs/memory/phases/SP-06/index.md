@@ -2,11 +2,10 @@
 
 ## Purpose
 
-Track grounded summaries, online source retrieval, source trust policy, citation coverage, and summary UI.
+Track transcript-grounded summaries, local evidence policy, citation coverage, and summary UI.
 
 ## Expected Codebase Mirrors
 
 - `docs/memory/codebase/api/app/summaries/`
-- `docs/memory/codebase/api/app/sources/`
+- `docs/memory/codebase/api/app/evidence/`
 - `docs/memory/codebase/web/src/summaries/`
-

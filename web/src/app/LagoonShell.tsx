@@ -1,3 +1,4 @@
+import { CapturePanel } from "../capture/CapturePanel";
 import { privacyDefaults } from "./privacyDefaults";
 import { storageBoundary } from "./storageBoundary";
 
@@ -49,8 +50,8 @@ export function LagoonShell() {
             </div>
           ))}
         </div>
+        <CapturePanel />
       </section>
     </main>
   );
 }
-

@@ -6,7 +6,7 @@ Locked baseline for implementation phases.
 
 ## Decision
 
-Lagoon treats lecture media, transcripts, embeddings, notes, summaries, tutor traces, API keys, logs, and temp files as sensitive. Default behavior keeps content local. Any external provider call must be explicit, feature-scoped, and auditable without logging raw content.
+Lagoon treats lecture media, transcripts, notes, summaries, tutor-practice traces, API keys, logs, and temp files as sensitive. Default behavior keeps content local. Any external provider call must be explicit, feature-scoped, and auditable without logging raw content.
 
 ## Context
 
@@ -16,7 +16,7 @@ Lagoon will process recorded lectures and likely student notes. This data may co
 
 - Local-only default with opt-in provider boundaries: selected.
 - Provider-first processing by default: rejected because it risks accidental content disclosure.
-- Full offline-only model: deferred because later transcription, vision, and tutor phases may need provider options.
+- Full offline-only model: deferred because later transcription or tutor-practice phases may need explicit provider options.
 
 ## Consequences
 

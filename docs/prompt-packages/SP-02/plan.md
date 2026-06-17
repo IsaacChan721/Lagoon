@@ -26,7 +26,7 @@ Add video and audio capture layer with reliable recording lifecycle.
 
 - Capture permission flow.
 - Recording start, pause, stop, save handoff.
-- Local media artifact metadata.
+- Local media artifact metadata and local file handoff.
 - Capture verification.
 
 ## Out Of Scope
@@ -35,13 +35,14 @@ Add video and audio capture layer with reliable recording lifecycle.
 - No summarization.
 - No RAG.
 - No cloud upload.
+- No encryption requirement for MVP; use local-only files, ignored paths, and clear storage boundaries.
 
 ## Execution Steps
 
 1. Confirm `SP-01` foundation gate.
 2. Read capture-related app and storage notes.
 3. Add capture UI/control flow.
-4. Store raw media through approved local boundary.
+4. Store raw media through the approved local-only file boundary.
 5. Add failure states for denied permission and interrupted recording.
 6. Verify recording lifecycle.
 
@@ -49,7 +50,7 @@ Add video and audio capture layer with reliable recording lifecycle.
 
 - User can start and stop recording.
 - Permission denial is handled.
-- Saved media has stable local reference.
+- Saved media has stable local file reference.
 - Transcription remains untouched.
 
 ## Definition Of Done
@@ -67,12 +68,12 @@ Add video and audio capture layer with reliable recording lifecycle.
 ## Troubleshooting
 
 - If browser blocks media devices, use mock media flags or documented manual check.
-- If file save fails, inspect storage boundary and permissions.
+- If file save fails, inspect storage boundary, local app-data path, and permissions.
 - If lifecycle race appears, add state-machine style test before fixing.
 
 ## Lesson Plan
 
-Design this phase memory as beginner lesson material. Put no-prerequisite media-capture context first, then build toward browser APIs, state, and local save handoff.
+Design this phase memory as beginner lesson material. Put no-prerequisite media-capture context first, then build toward browser APIs, state, and local-only save handoff.
 
 ### Lesson Depth Standard
 
@@ -92,7 +93,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - Capture UI and permission flow.
 - Recording lifecycle code for start, pause, stop, and save.
-- Local media metadata records.
+- Local media metadata records and local file references.
 - Tests or manual checks for capture controls and failure states.
 
 ### Lesson 1: Browser Capture Basics
@@ -114,10 +115,10 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 ### Lesson 3: Local Media Handoff
 
 - Prerequisites: understand recording lifecycle.
-- Explain: raw media becomes a local artifact reference, not a transcript yet.
+- Explain: raw media becomes a local artifact reference in app data, not a transcript yet.
 - Coding example: show a metadata object with `id`, `localPath`, `durationMs`, `mimeType`, and `createdAt`.
 - Theory Q/A: Why store metadata separately from bytes? Metadata lets later phases find and process media without reading large files constantly.
-- Key takeaways: capture produces media artifacts only; transcription waits for `SP-03`.
+- Key takeaways: capture produces local media artifacts only; transcription waits for `SP-03`; encryption and cloud sync are not MVP requirements.
 
 ## Memory Updates
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Track local app foundation: frontend shell, backend API, SQLite metadata, encrypted vault, and initial tests.
+Track local app foundation: frontend shell, backend API, SQLite metadata, local artifact boundary, and initial tests.
 
 ## Stack Choice
 
@@ -16,7 +16,7 @@ Track local app foundation: frontend shell, backend API, SQLite metadata, encryp
 - `web/` owns first local app shell with privacy defaults and storage boundary display.
 - `api/lagoon_local/` owns local-only settings and storage layout.
 - SQLite metadata schema creates `app_settings`, `lecture_workspaces`, and `vault_objects`.
-- Vault content write is intentionally blocked with `EncryptionNotConfiguredError` until real encryption provider/key handling exists.
+- Raw lecture content remains local-only and outside Git. Encryption is a later hardening option, not an MVP requirement.
 - `.gitignore` blocks local Lagoon data, databases, vault/media/transcript/embedding folders, dependencies, build outputs, and env secrets.
 - `scripts/verify_sp01_foundation.py` and `.ps1` provide first verification command.
 - `docs/lessons/SP-01-local-app-foundation.md` provides beginner code-tour lesson for this exact foundation.

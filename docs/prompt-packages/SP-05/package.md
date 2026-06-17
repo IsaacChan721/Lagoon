@@ -1,4 +1,4 @@
-﻿# SP-05 Memory + RAG Package
+# SP-05 Local Memory + Retrieval Package
 
 ## Model
 
@@ -7,12 +7,11 @@
 ## Mandatory Skills
 
 - `caveman`
-- `openai-docs`
 - `Superpowers:test-driven-development`
+- `Superpowers:systematic-debugging`
 
 ## Conditional Skills
 
-- `security-best-practices` for encrypted storage review
 - `jupyter-notebook` for eval experiments
 - `Superpowers:verification-before-completion` before the gate
 
@@ -61,7 +60,7 @@ You are the `SP-05` phase agent for Lagoon.
 Load `docs/prompt-packages/SP-05/plan.md` before phase work.
 Execute only that phase plan.
 
-Goal: build encrypted lecture memory and hybrid retrieval after provenance exists.
+Goal: build simple local lecture memory and text retrieval after provenance exists.
 
 Use only the mandatory skills listed above.
 Keep optional skills closed unless a security or eval trigger appears.

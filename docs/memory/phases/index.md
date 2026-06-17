@@ -11,10 +11,9 @@ Each phase owns one memory folder. Phase agents update their folder during imple
 - `SP-03/`: media/transcription memory.
 - `CRIT-01/`: provenance gate memory.
 - `SP-04/`: video understanding memory.
-- `SP-05/`: memory/RAG memory.
-- `SP-06/`: summaries/sources memory.
-- `SP-07/`: tutor agent memory.
-- `SP-08/`: gated improvement memory.
+- `SP-05/`: local memory/retrieval memory.
+- `SP-06/`: transcript-grounded summaries memory.
+- `SP-07/`: tutor-practice memory.
+- `SP-08/`: post-MVP improvement proposal memory.
 - `SP-09/`: hardening/packaging memory.
-- `SP-10/`: cloud sync memory.
-
+- `SP-10/`: deferred cloud sync decision memory.

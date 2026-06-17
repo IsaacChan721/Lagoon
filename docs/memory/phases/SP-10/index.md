@@ -2,11 +2,9 @@
 
 ## Purpose
 
-Track optional cloud sync, Supabase schema/RLS, encrypted sync, conflict handling, and device management.
+Track deferred cloud sync decision, future approval checklist, no-upload verification, and post-MVP risk questions.
 
 ## Expected Codebase Mirrors
 
-- `docs/memory/codebase/api/app/sync/`
-- `docs/memory/codebase/web/src/sync/`
-- `docs/memory/codebase/supabase/`
-
+- `docs/memory/codebase/docs/sync-decision/`
+- `docs/memory/codebase/docs/no-upload-verification/`

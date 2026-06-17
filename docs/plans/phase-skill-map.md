@@ -33,10 +33,7 @@ Existing relevant skills:
 
 Plugin skills to reference by name when available:
 - `Browser:browser`
-- `OpenAI Developers:agents-sdk`
 - `OpenAI Developers:openai-api-troubleshooting`
-- `Supabase:supabase`
-- `Supabase:supabase-postgres-best-practices`
 - `Superpowers:brainstorming`
 - `Superpowers:writing-plans`
 - `Superpowers:subagent-driven-development`
@@ -57,12 +54,12 @@ Each row splits **mandatory** skills from **conditional** skills. Mandatory skil
 | `SP-03 Media + Transcription` | `transcribe`, `Superpowers:test-driven-development`, `Superpowers:systematic-debugging` | `openai-docs` for API/model details, `OpenAI Developers:openai-api-troubleshooting` for API failures, `Superpowers:verification-before-completion` before gate |
 | `CRIT-01 Provenance Gate` | `security-threat-model`, `Superpowers:test-driven-development` | `security-best-practices` for implementation review, `Superpowers:verification-before-completion` before gate |
 | `SP-04 Video Understanding` | `Superpowers:systematic-debugging`, `playwright` | `openai-docs` for vision API decisions, `imagegen` only for generated visual fixtures, `screenshot` for frame/OCR QA |
-| `SP-05 Memory + RAG` | `openai-docs`, `Superpowers:test-driven-development` | `security-best-practices` for encrypted storage review, `jupyter-notebook` for eval experiments, `Superpowers:verification-before-completion` before gate |
-| `SP-06 Summaries + Sources` | `openai-docs`, `Superpowers:systematic-debugging` | `Browser:browser` for source/UI checks, `security-best-practices` for web/source trust, `Superpowers:verification-before-completion` before gate |
-| `SP-07 Tutor Agent` | `openai-docs`, `Superpowers:test-driven-development` | `OpenAI Developers:agents-sdk` only for architecture comparison, `OpenAI Developers:openai-api-troubleshooting` for API failures, `speech` only for spoken tutor output |
-| `SP-08 Gated Improvement` | `skill-creator`, `security-threat-model`, `Superpowers:verification-before-completion` | `security-best-practices` for proposal sandboxing, `Superpowers:subagent-driven-development` during execution |
+| `SP-05 Local Memory + Retrieval` | `Superpowers:test-driven-development`, `Superpowers:systematic-debugging` | `jupyter-notebook` for eval experiments, `Superpowers:verification-before-completion` before gate |
+| `SP-06 Transcript-Grounded Summaries` | `Superpowers:test-driven-development`, `Superpowers:systematic-debugging` | `Browser:browser` for summary UI checks, `security-best-practices` for imported-content trust, `Superpowers:verification-before-completion` before gate |
+| `SP-07 Tutor Practice` | `Superpowers:test-driven-development`, `Superpowers:systematic-debugging` | `OpenAI Developers:openai-api-troubleshooting` only for explicit API failures, `speech` only for spoken tutor output |
+| `SP-08 Post-MVP Improvement Proposals` | `Superpowers:test-driven-development`, `Superpowers:verification-before-completion` | `security-best-practices` for future skill proposal review |
 | `SP-09 Hardening + Packaging` | `playwright`, `Superpowers:verification-before-completion` | `Browser:browser` for manual smoke, `sentry` for production error review, `security-best-practices` for release audit, `web-design-guidelines` for UI audit |
-| `SP-10 Optional Cloud Sync` | `Supabase:supabase`, `security-threat-model` | `Supabase:supabase-postgres-best-practices` for schema/RLS, `security-best-practices` for crypto/auth review, `Superpowers:verification-before-completion` before gate |
+| `SP-10 Deferred Cloud Sync Decision` | `security-threat-model`, `Superpowers:verification-before-completion` | `security-best-practices` for future sync risk review |
 
 ## Model Routing
 

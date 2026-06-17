@@ -1,4 +1,4 @@
-﻿# SP-10 Optional Cloud Sync Package
+# SP-10 Deferred Cloud Sync Decision Package
 
 ## Model
 
@@ -7,14 +7,12 @@
 ## Mandatory Skills
 
 - `caveman`
-- `Supabase:supabase`
+- `Superpowers:verification-before-completion`
 - `security-threat-model`
 
 ## Conditional Skills
 
-- `Supabase:supabase-postgres-best-practices` for schema/RLS
-- `security-best-practices` for crypto/auth review
-- `Superpowers:verification-before-completion` before the gate
+- `security-best-practices` for future sync risk review
 
 ## Tools
 
@@ -25,13 +23,13 @@
 
 ## Plugins
 
-- `Supabase:supabase`
+- `Superpowers:verification-before-completion`
 
 ## Context Budget
 
 - 1-3 skills open
 - 1-2 repo docs
-- only sync files
+- only deferred sync decision docs
 
 ## Phase Plan
 
@@ -61,10 +59,10 @@ You are the `SP-10` phase agent for Lagoon.
 Load `docs/prompt-packages/SP-10/plan.md` before phase work.
 Execute only that phase plan.
 
-Goal: add opt-in encrypted cloud sync after the local MVP is stable.
+Goal: defer cloud sync from MVP and document the post-MVP decision gate.
 
 Use only the mandatory skills listed above.
-Keep optional skills closed unless a database/security trigger appears.
+Keep optional skills closed unless a future sync security review trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use only these files in scope:

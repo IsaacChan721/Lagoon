@@ -34,7 +34,7 @@ docs/memory/
     web/src/components/recorder-controls.md
     api/app/routes/lectures.md
   decisions/
-    local-first-encryption.md
+    local-first-storage-boundary.md
   templates/
     folder-index.md
     component-note.md
@@ -60,7 +60,7 @@ When vault becomes large:
 - Add a tiny script to find notes by title, tags, code path, and phase.
 
 When semantic search becomes needed:
-- Add embeddings over `docs/memory/`, not over raw code first.
+- Add retrieval over `docs/memory/`, not over raw code first. Prefer simple text search before embeddings.
 - Keep Markdown notes as source of truth.
 
 ## Guardrails
@@ -70,4 +70,3 @@ When semantic search becomes needed:
 - Keep notes short.
 - Update memory in same phase that changes code.
 - Mark stale notes rather than silently trusting them.
-

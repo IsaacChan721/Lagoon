@@ -1,4 +1,4 @@
-﻿# SP-06 Summaries + Online Sources Package
+# SP-06 Transcript-Grounded Summaries Package
 
 ## Model
 
@@ -12,8 +12,8 @@
 
 ## Conditional Skills
 
-- `Browser:browser` for source/UI checks
-- `security-best-practices` for source trust and leakage review
+- `Browser:browser` for summary UI checks
+- `security-best-practices` for imported-content trust and leakage review
 - `Superpowers:verification-before-completion` before the gate
 
 ## Tools
@@ -31,7 +31,7 @@
 
 - 1-2 skills open
 - 1 repo doc
-- only summary/source files
+- only summary/local-evidence files
 
 ## Phase Plan
 
@@ -61,10 +61,10 @@ You are the `SP-06` phase agent for Lagoon.
 Load `docs/prompt-packages/SP-06/plan.md` before phase work.
 Execute only that phase plan.
 
-Goal: produce grounded lecture summaries with lecture citations and vetted online sources.
+Goal: produce grounded lecture summaries with transcript and local artifact citations only.
 
 Use only the mandatory skills listed above.
-Keep optional skills closed unless a source or UI trigger appears.
+Keep optional skills closed unless a UI or imported-content safety trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use only these files in scope:

@@ -97,7 +97,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - `web/` local app shell with privacy/storage UI.
 - `api/lagoon_local/` local settings and storage boundary.
-- SQLite metadata schema for settings, workspaces, and vault objects.
+- SQLite metadata schema for settings, workspaces, and local artifact metadata.
 - `.gitignore` local data protections.
 - `scripts/verify_sp01_foundation.py` and PowerShell verification wrapper.
 - Codebase mirror notes under `docs/memory/codebase/`.
@@ -114,10 +114,10 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 ### Lesson 2: Local Storage Boundary
 
 - Prerequisites: understand repo shape.
-- Explain: SQLite tracks metadata; vault writes stay blocked until real encryption exists.
-- Coding example: show pseudocode for `create_workspace()` writing metadata but `write_vault_object()` raising `EncryptionNotConfiguredError`.
-- Theory Q/A: Why intentionally block vault content writes? Storing sensitive lecture content without encryption would violate local-first safety.
-- Key takeaways: metadata is allowed; sensitive content needs encryption before persistence.
+- Explain: SQLite tracks metadata; raw lecture content stays in local app-data files and is excluded from Git.
+- Coding example: show pseudocode for `create_workspace()` writing metadata and `register_local_artifact()` storing a local file reference.
+- Theory Q/A: Why keep content local instead of adding encryption now? MVP needs a simple local-only boundary first; encryption is a later hardening option, not a phase blocker.
+- Key takeaways: metadata is allowed; sensitive content must stay local, ignored by Git, and never uploaded by default.
 
 ### Lesson 3: App Shell And Privacy Defaults
 

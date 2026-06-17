@@ -10,11 +10,13 @@ Frontend source root for Lagoon shell.
 - `App.tsx`
 - `styles.css`
 - `app/`
+- `capture/`
 
 ## Key Files
 
 - `main.tsx`
 - `App.tsx`
+- `capture/CapturePanel.tsx`
 
 ## Interfaces
 
@@ -28,12 +30,12 @@ Frontend source root for Lagoon shell.
 ## Tests
 
 - `npm run build:web`
+- `npm run verify:sp02`
 
 ## Gotchas
 
-- Keep app entry small; feature state belongs under `src/app/` until stronger domain folders exist.
+- Keep app entry small; feature state now belongs under domain folders such as `src/capture/`.
 
 ## Last Updated
 
-SP-01
-
+SP-02

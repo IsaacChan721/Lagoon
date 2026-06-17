@@ -1,4 +1,4 @@
-﻿# SP-08 Gated Improvement Package
+# SP-08 Post-MVP Improvement Proposals Package
 
 ## Model
 
@@ -13,7 +13,7 @@
 
 ## Conditional Skills
 
-- `security-best-practices` for proposal sandboxing
+- `security-best-practices` for future skill proposal review
 - `Superpowers:subagent-driven-development` during execution
 
 ## Tools
@@ -62,10 +62,10 @@ You are the `SP-08` phase agent for Lagoon.
 Load `docs/prompt-packages/SP-08/plan.md` before phase work.
 Execute only that phase plan.
 
-Goal: create gated skill/rubric proposals that require human approval and eval pass before activation.
+Goal: create manual post-MVP improvement proposals that require user approval and eval pass before implementation.
 
 Use only the mandatory skills listed above.
-Keep optional skills closed unless a security or execution trigger appears.
+Keep optional skills closed unless a security review trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use only these files in scope:

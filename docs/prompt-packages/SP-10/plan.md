@@ -13,7 +13,7 @@ Execute in `caveman full`. Use normal prose only when clarity or safety would su
 
 ## Goal
 
-Add optional encrypted cloud sync only after local MVP is stable.
+Defer cloud sync and document a post-MVP decision gate.
 
 ## Inputs
 
@@ -24,54 +24,55 @@ Add optional encrypted cloud sync only after local MVP is stable.
 
 ## In Scope
 
-- Opt-in sync contract.
-- Encryption before upload.
-- Supabase schema/RLS if Supabase is chosen.
-- Conflict and recovery behavior.
+- Post-MVP sync decision criteria.
+- Explicit user approval requirements.
+- Risks and non-goals for cloud sync.
+- Future implementation checklist.
 
 ## Out Of Scope
 
+- No cloud sync implementation in MVP.
+- No Supabase/RLS/schema work in MVP.
+- No encryption system work in MVP.
 - No default cloud upload.
-- No plaintext lecture sync.
-- No sync before `SP-09` readiness.
 
 ## Execution Steps
 
 1. Confirm local MVP release gate.
 2. Read storage/security memory.
-3. Define opt-in sync model and encrypted payload boundary.
-4. Add schema/RLS only if cloud sync is approved.
-5. Implement conflict detection and recovery behavior.
-6. Verify sync with encryption and opt-out path.
+3. Document why sync is deferred from MVP.
+4. Define user approval criteria for any future sync project.
+5. List future security questions: auth, encryption, RLS, conflicts, recovery.
+6. Verify no MVP code path uploads lecture content.
 
 ## Acceptance Criteria
 
-- Cloud sync is disabled by default.
-- Data is encrypted before upload.
-- RLS/auth policy protects user data.
-- Conflict behavior is deterministic.
+- Cloud sync is absent from MVP runtime.
+- Future sync requires explicit user approval and a new implementation plan.
+- Security questions are listed but not implemented.
+- No default upload path exists.
 
 ## Definition Of Done
 
-- Sync tests pass or blocker is explicit.
-- Security review covers auth, RLS, and encryption.
-- Memory notes capture setup, risks, and rollback.
+- Deferred sync decision is documented.
+- Verification confirms no upload path was added.
+- Memory notes capture risks and future checklist.
 
 ## Verification
 
-- Run sync unit/integration tests.
+- Verify no cloud sync code path exists in MVP.
 - Verify no plaintext lecture content leaves local storage.
 - Run `git status --short`.
 
 ## Troubleshooting
 
-- If RLS is uncertain, block release of sync.
-- If encryption key handling is weak, keep sync disabled.
-- If conflicts corrupt local state, restore from local-first source.
+- If user requests sync, create a new post-MVP plan first.
+- If auth/RLS/encryption is uncertain, keep sync out of MVP.
+- If future sync risk is high, document blocker instead of implementing.
 
 ## Lesson Plan
 
-Design this phase memory as beginner lesson material. Put no-prerequisite cloud-sync context first, then build toward opt-in consent, encryption, RLS/auth, conflicts, and recovery.
+Design this phase memory as beginner lesson material. Put no-prerequisite post-MVP planning context first, then build toward why cloud sync is deferred, what approval would require, and how to verify no upload path exists.
 
 ### Lesson Depth Standard
 
@@ -89,47 +90,46 @@ Every lesson below must be written and taught as a 60-90 minute beginner module,
 Each lesson must include concrete code or command examples. Prefer real snippets from this codebase once the phase exists. Avoid abstract-only examples. When a lesson covers safety, privacy, auth, encryption, destructive actions, or external providers, spell out the risk clearly and then return to concise style.
 ### Created In This Phase
 
-- Opt-in sync contract and consent surface.
-- Encryption-before-upload path.
-- Cloud schema/auth/RLS policy if Supabase or another provider is chosen.
-- Conflict resolution and recovery behavior.
-- Security review for plaintext leakage, keys, and authorization.
+- Deferred sync decision note.
+- Future approval checklist.
+- Risk register for auth, encryption, RLS, conflicts, and recovery.
+- Verification that MVP has no cloud upload path.
 
-### Lesson 1: Why Sync Is Opt-In
+### Lesson 1: Why Sync Is Deferred
 
 - Prerequisites: none.
-- Explain: Lagoon is local-first; cloud sync is optional and disabled by default.
-- Coding example: show settings fields `syncEnabled: false`, `lastSyncedAt`, and `provider`.
-- Theory Q/A: Why no default cloud upload? Lecture content is sensitive and must stay local unless user chooses sync.
-- Key takeaways: consent is a product and security requirement.
+- Explain: Lagoon MVP is local-first, so cloud sync is deferred until the local app is useful and stable.
+- Coding example: show settings fields with no `syncEnabled` runtime path and a future-only `syncDecisionStatus`.
+- Theory Q/A: Why no default cloud upload? Lecture content is sensitive and sync adds auth, storage, conflicts, and privacy work outside MVP.
+- Key takeaways: deferral is a valid product decision; consent is required before future sync work.
 
-### Lesson 2: Encryption Before Upload
+### Lesson 2: Future Security Questions
 
-- Prerequisites: understand opt-in sync.
-- Explain: lecture content must be encrypted locally before any network transfer.
-- Coding example: show pseudocode `ciphertext = encrypt(plaintext, localKey)` before `upload(ciphertext)`.
-- Theory Q/A: Why block on weak key handling? Encryption fails if keys are exposed or stored badly.
-- Key takeaways: never send plaintext lecture content to cloud storage.
+- Prerequisites: understand sync deferral.
+- Explain: future sync must answer auth, encryption, authorization, conflicts, and recovery before code starts.
+- Coding example: show a checklist object with `authPlan`, `encryptionPlan`, `authorizationPlan`, and `rollbackPlan`.
+- Theory Q/A: Why not implement encryption now? MVP does not upload content, so encryption work would add complexity without user-visible value.
+- Key takeaways: never add sync primitives before the product needs and risks are approved.
 
-### Lesson 3: Auth And RLS
+### Lesson 3: Approval Gate
 
-- Prerequisites: understand encryption path.
-- Explain: auth identifies the user; row-level security limits which rows that user can access.
-- Coding example: show a policy concept: user can select rows only where `owner_id = auth.uid()`.
-- Theory Q/A: Why block if RLS is uncertain? Misconfigured policy can expose private lecture metadata or ciphertext.
-- Key takeaways: encryption and authorization both matter.
+- Prerequisites: understand future security questions.
+- Explain: future sync needs explicit user approval and a separate plan before Supabase, RLS, or provider code appears.
+- Coding example: show a decision record with `approvedBy`, `approvedAt`, `provider`, `threatModelPath`, and `rollbackPath`.
+- Theory Q/A: Why block if RLS is uncertain? Misconfigured policy can expose private lecture metadata or content.
+- Key takeaways: authorization still matters later, but it is not MVP implementation work.
 
-### Lesson 4: Conflicts And Recovery
+### Lesson 4: No-Upload Verification
 
-- Prerequisites: understand auth and sync data flow.
-- Explain: sync must handle local/cloud version conflicts without corrupting local source of truth.
-- Coding example: show metadata fields `version`, `updatedAt`, `deviceId`, and `conflictState`.
-- Theory Q/A: Why restore from local-first source after corruption? Local data remains primary in Lagoon model.
-- Key takeaways: deterministic conflict rules protect user work.
+- Prerequisites: understand approval gate.
+- Explain: MVP verification should prove no lecture content upload path exists.
+- Coding example: run `rg -n "fetch\\(|axios|upload|Supabase|syncEnabled|cloud" api web docs` and explain expected findings.
+- Theory Q/A: Why verify absence? Local-first promises fail if hidden upload paths appear.
+- Key takeaways: no-upload verification protects MVP simplicity and user trust.
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-10/index.md` and codebase notes for sync contract, encryption, schema/RLS, and rollback.
+Update `docs/memory/phases/SP-10/index.md` and codebase notes for deferred sync decision, future checklist, and no-upload verification.
 
 ## Git Checkpoint
 

@@ -1,4 +1,4 @@
-﻿# SP-07 Tutor Agent Package
+# SP-07 Tutor Practice Package
 
 ## Model
 
@@ -7,13 +7,12 @@
 ## Mandatory Skills
 
 - `caveman`
-- `openai-docs`
 - `Superpowers:test-driven-development`
+- `Superpowers:systematic-debugging`
 
 ## Conditional Skills
 
-- `OpenAI Developers:agents-sdk` only for architecture comparison
-- `OpenAI Developers:openai-api-troubleshooting` for API failures
+- `OpenAI Developers:openai-api-troubleshooting` only for explicit provider failures
 - `speech` only for spoken tutor output
 
 ## Tools
@@ -61,10 +60,10 @@ You are the `SP-07` phase agent for Lagoon.
 Load `docs/prompt-packages/SP-07/plan.md` before phase work.
 Execute only that phase plan.
 
-Goal: build the selected-lecture tutor with evidence-backed grading and gated skill proposals.
+Goal: build simple selected-lecture tutor practice with evidence-backed feedback.
 
 Use only the mandatory skills listed above.
-Keep optional skills closed unless an architecture or API trigger appears.
+Keep optional skills closed unless an explicit API or speech trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use only these files in scope:

@@ -20,12 +20,12 @@ Remaining external action:
 5. `SP-03 Media + Transcription`
 6. `CRIT-01 Provenance Gate`
 7. `SP-04 Video Understanding`
-8. `SP-05 Memory + RAG`
-9. `SP-06 Summaries + Online Sources`
-10. `SP-07 Tutor Agent`
-11. `SP-08 Gated Improvement Loop`
+8. `SP-05 Local Memory + Retrieval`
+9. `SP-06 Transcript-Grounded Summaries`
+10. `SP-07 Tutor Practice`
+11. `SP-08 Post-MVP Improvement Proposals`
 12. `SP-09 Hardening + Packaging`
-13. `SP-10 Optional Cloud Sync`
+13. `SP-10 Deferred Cloud Sync Decision`
 
 ## Main Agent Responsibilities
 
@@ -101,11 +101,11 @@ Every phase must:
 
 Create these after the first implementation pass proves the patterns are stable:
 - `lagoon-orchestrator`: phase gates, subagent contracts, promotion rules.
-- `lagoon-local-first-security`: encryption, keychain, temp-file/log redaction.
+- `lagoon-local-first-security`: local-only boundaries, temp-file/log redaction, and no-upload checks.
 - `lagoon-media-pipeline`: FFmpeg chunking, retries, transcript stitching.
-- `lagoon-rag-evals`: retrieval metrics, citation checks, held-out fixtures.
+- `lagoon-retrieval-evals`: simple retrieval metrics, citation checks, held-out fixtures.
 - `lagoon-tutor-policy`: grading rules, selected-lecture boundary, no fake citations.
-- `lagoon-skill-governance`: proposal-only artifacts, eval-before-enable, rollback.
+- `lagoon-improvement-governance`: proposal-only artifacts, eval-before-implementation, approval gates.
 
 Do not create these prematurely. Each custom skill needs concrete examples from the real codebase, concise `SKILL.md`, and validation with `quick_validate.py`.
 

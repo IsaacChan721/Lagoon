@@ -10,7 +10,7 @@ Lagoon MVP is a local-first, single-user lecture assistant. It helps one user cr
 
 ## Context
 
-Phase order starts with local app foundation, then capture, transcription, provenance, understanding, memory/RAG, summaries, tutor, improvement loop, hardening, and optional cloud sync. `SP-00` must remove product ambiguity before implementation begins.
+Phase order starts with local app foundation, then capture, transcription, provenance, understanding, simple local retrieval, transcript-grounded summaries, tutor practice, post-MVP improvement proposals, hardening, and deferred cloud sync decision. `SP-00` must remove product ambiguity before implementation begins.
 
 ## Options Considered
 
@@ -22,7 +22,7 @@ Phase order starts with local app foundation, then capture, transcription, prove
 
 - `SP-01` builds foundation only, not lecture intelligence.
 - Provider/API choices stay deferred until concrete provider phases.
-- Cloud sync stays out of MVP until `SP-10`.
+- Cloud sync stays out of MVP. `SP-10` only documents a post-MVP decision gate unless the user explicitly approves a new sync implementation plan.
 - All early storage and logs assume sensitive lecture content.
 
 ## Revisit Trigger

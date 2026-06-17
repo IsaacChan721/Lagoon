@@ -13,14 +13,14 @@ Execute in `caveman full`. Use normal prose only when clarity or safety would su
 
 ## Goal
 
-Build tutoring agent over selected Lagoon lecture memories.
+Build simple selected-lecture tutor practice over local lecture memories.
 
 ## Inputs
 
 - `docs/plans/main-orchestration.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-07/index.md`
-- RAG, summary, and provenance memory notes
+- local retrieval, summary, and provenance memory notes
 
 ## In Scope
 
@@ -32,15 +32,15 @@ Build tutoring agent over selected Lagoon lecture memories.
 
 ## Out Of Scope
 
-- No autonomous skill installation.
+- No autonomous agents or skill installation.
 - No cloud sync.
 - No unsupported citations.
 
 ## Execution Steps
 
-1. Confirm RAG retrieval and citation contracts.
+1. Confirm local retrieval and citation contracts.
 2. Define tutor input: selected lectures, mode, difficulty.
-3. Implement tutor flow using retrieval boundary.
+3. Implement simple tutor flow using retrieval boundary.
 4. Add grading rubric and answer feedback.
 5. Add tests for lecture boundary and citation behavior.
 6. Verify challenge modes.
@@ -66,13 +66,13 @@ Build tutoring agent over selected Lagoon lecture memories.
 
 ## Troubleshooting
 
-- If tutor hallucinates, tighten retrieval-only answer policy.
+- If tutor hallucinates, tighten retrieval-only answer policy or reduce generated behavior.
 - If grading is vague, add rubric examples.
 - If context is too large, summarize lecture memory before retrieval prompt.
 
 ## Lesson Plan
 
-Design this phase memory as beginner lesson material. Put no-prerequisite tutor context first, then build toward modes, retrieval grounding, grading, and feedback.
+Design this phase memory as beginner lesson material. Put no-prerequisite tutor-practice context first, then build toward modes, retrieval grounding, grading, and feedback.
 
 ### Lesson Depth Standard
 
@@ -90,7 +90,7 @@ Every lesson below must be written and taught as a 60-90 minute beginner module,
 Each lesson must include concrete code or command examples. Prefer real snippets from this codebase once the phase exists. Avoid abstract-only examples. When a lesson covers safety, privacy, auth, encryption, destructive actions, or external providers, spell out the risk clearly and then return to concise style.
 ### Created In This Phase
 
-- Tutor boundary for selected lectures.
+- Simple tutor-practice boundary for selected lectures.
 - Quiz, hands-on question, and end-to-end challenge modes.
 - Grading rubric and feedback policy.
 - Tests for citation use, unknown answers, and boundary violations.
@@ -98,10 +98,10 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 ### Lesson 1: What Tutor Mode Does
 
 - Prerequisites: none.
-- Explain: tutor helps learner practice selected lecture content using grounded evidence.
+- Explain: tutor practice helps learner review selected lecture content using grounded evidence.
 - Coding example: show a tutor request with `lectureIds`, `mode`, `question`, and `retrievedEvidence`.
 - Theory Q/A: Why restrict to selected lectures? Learner expects answers from current class context, not unrelated memory.
-- Key takeaways: tutor is scoped help, not open-ended chatbot.
+- Key takeaways: tutor practice is scoped help, not an autonomous agent or open-ended chatbot.
 
 ### Lesson 2: Practice Modes
 
@@ -129,7 +129,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-07/index.md` and codebase notes for tutor contract, modes, grading, and boundary rules.
+Update `docs/memory/phases/SP-07/index.md` and codebase notes for tutor-practice contract, modes, grading, and boundary rules.
 
 ## Git Checkpoint
 

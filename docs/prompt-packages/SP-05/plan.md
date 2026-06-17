@@ -13,7 +13,7 @@ Execute in `caveman full`. Use normal prose only when clarity or safety would su
 
 ## Goal
 
-Build local memory and RAG layer for lecture retrieval.
+Build simple local lecture memory and retrieval.
 
 ## Inputs
 
@@ -24,23 +24,24 @@ Build local memory and RAG layer for lecture retrieval.
 
 ## In Scope
 
-- Local indexing.
+- Local text chunking and indexing.
 - Retrieval over selected lecture artifacts.
-- Eval fixtures and retrieval metrics.
+- Small eval fixtures and retrieval checks.
 - Citation-preserving result shape.
 
 ## Out Of Scope
 
 - No tutor UX beyond retrieval contract.
+- No embeddings or vector database for MVP unless simple text search fails with evidence.
 - No cloud vector store.
 - No skill improvement loop.
 
 ## Execution Steps
 
 1. Confirm transcript artifacts are stable.
-2. Define local index inputs and outputs.
-3. Implement chunking/indexing/retrieval path.
-4. Add held-out eval fixtures.
+2. Define local text index inputs and outputs.
+3. Implement chunking and simple local search/retrieval path.
+4. Add small held-out eval fixtures.
 5. Verify selected lecture filtering.
 6. Update memory for retrieval contracts.
 
@@ -48,12 +49,12 @@ Build local memory and RAG layer for lecture retrieval.
 
 - Retrieval returns relevant lecture chunks with citations.
 - Selected lecture boundary is enforced.
-- Eval fixture measures retrieval quality.
+- Eval fixture measures basic retrieval quality.
 - Local storage remains default.
 
 ## Definition Of Done
 
-- Retrieval tests/evals run.
+- Retrieval tests or small evals run.
 - Index rebuild behavior is documented.
 - Tutor phase can consume retrieval contract.
 
@@ -71,7 +72,7 @@ Build local memory and RAG layer for lecture retrieval.
 
 ## Lesson Plan
 
-Design this phase memory as beginner lesson material. Put no-prerequisite retrieval context first, then build toward indexing, search results, citations, and evals.
+Design this phase memory as beginner lesson material. Put no-prerequisite retrieval context first, then build toward local text indexing, search results, citations, and evals.
 
 ### Lesson Depth Standard
 
@@ -89,9 +90,9 @@ Every lesson below must be written and taught as a 60-90 minute beginner module,
 Each lesson must include concrete code or command examples. Prefer real snippets from this codebase once the phase exists. Avoid abstract-only examples. When a lesson covers safety, privacy, auth, encryption, destructive actions, or external providers, spell out the risk clearly and then return to concise style.
 ### Created In This Phase
 
-- Local index over selected lecture artifacts.
+- Local text index over selected lecture artifacts.
 - Retrieval contract for relevant chunks with citations.
-- Eval fixtures and retrieval metrics.
+- Small eval fixtures and retrieval checks.
 - Index rebuild rules and drift checks.
 
 ### Lesson 1: What Retrieval Does
@@ -105,10 +106,10 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 ### Lesson 2: Local Indexing
 
 - Prerequisites: understand retrieval result shape.
-- Explain: local index stores searchable representations of transcript or summary chunks.
-- Coding example: show pseudocode for `indexLecture(lectureId, chunks)` and `searchLecture(lectureId, query)`.
-- Theory Q/A: Why enforce selected lecture boundary? It prevents answers from leaking across classes or topics.
-- Key takeaways: every search needs scope, chunk IDs, and citations.
+- Explain: local index stores searchable text chunks from transcript or summary artifacts.
+- Coding example: show pseudocode for `indexLectureText(lectureId, chunks)` and `searchLectureText(lectureId, query)`.
+- Theory Q/A: Why use simple text search first? MVP should prove the retrieval contract before adding embeddings, vector stores, or provider complexity.
+- Key takeaways: every search needs scope, chunk IDs, and citations; vector search is a later optimization.
 
 ### Lesson 3: Eval Fixtures
 
@@ -128,7 +129,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-05/index.md` and codebase notes for RAG contracts, evals, and selected lecture filtering.
+Update `docs/memory/phases/SP-05/index.md` and codebase notes for local retrieval contracts, evals, and selected lecture filtering.
 
 ## Git Checkpoint
 

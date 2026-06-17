@@ -64,7 +64,7 @@ You are the `SP-01` phase agent for Lagoon.
 Load `docs/prompt-packages/SP-01/plan.md` before phase work.
 Execute only that phase plan.
 
-Goal: scaffold the local web app foundation, encrypted local vault, SQLite metadata, and the first user-facing shell.
+Goal: scaffold the local web app foundation, local artifact boundary, SQLite metadata, and the first user-facing shell.
 
 Use only the mandatory skills listed above.
 Keep optional skills closed unless a UI or security trigger appears.
