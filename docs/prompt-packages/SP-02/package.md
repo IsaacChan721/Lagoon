@@ -1,4 +1,4 @@
-# SP-02 Video + Audio Capture Package
+# SP-02 Lecture Media Import Package
 
 ## Model
 
@@ -9,13 +9,12 @@
 - `caveman`
 - `Superpowers:test-driven-development`
 - `Superpowers:systematic-debugging`
-- `Browser:browser`
 
 ## Conditional Skills
 
+- `Browser:browser` for local UI verification when available
 - `playwright` for scripted browser checks
-- `screenshot` for media/permission states
-- `web-design-guidelines` for capture UI review
+- `web-design-guidelines` for import UI review
 
 ## Tools
 
@@ -24,15 +23,11 @@
 - `apply_patch`
 - `git status`
 
-## Plugins
-
-- `Browser:browser`
-
 ## Context Budget
 
 - 1-2 skills open
 - 1 repo doc
-- only capture-related files
+- only media-import-related files
 
 ## Phase Plan
 
@@ -47,13 +42,13 @@ Execution style:
 ## Memory Bank
 
 Read first:
-- docs/memory/index.md
-- docs/memory/phases/SP-02/index.md
-- relevant notes under docs/memory/codebase/
+- `docs/memory/index.md`
+- `docs/memory/phases/SP-02/index.md`
+- relevant notes under `docs/memory/codebase/`
 
 Update before finishing:
-- docs/memory/phases/SP-02/index.md
-- matching notes under docs/memory/codebase/ for generated or changed folders/components
+- `docs/memory/phases/SP-02/index.md`
+- matching notes under `docs/memory/codebase/` for generated or changed folders/components
 
 ## Prompt
 
@@ -62,13 +57,16 @@ You are the `SP-02` phase agent for Lagoon.
 Load `docs/prompt-packages/SP-02/plan.md` before phase work.
 Execute only that phase plan.
 
-Goal: implement browser-based video + audio capture with local-only file handoff and stable UI states.
+Goal: implement lecture media import with local preview, metadata extraction, local-only file handoff, and stable UI states.
 
-Use only the mandatory skills listed above.
-Keep optional skills closed unless a browser or visual trigger appears.
-Use memory notes before reading broad source.
+Visual strategy: transcript is primary evidence; visuals are supporting evidence unless a future phase proves visual extraction reliable and affordable.
+
+Use only mandatory skills listed above.
+Keep optional skills closed unless browser or visual trigger appears.
+Use memory notes before broad source reads.
 Update memory notes for every generated or changed folder/component.
-Use only these files/folders in scope:
+
+In scope:
 - `web/`
 - `api/lagoon_local/`
 - `scripts/`
@@ -77,11 +75,6 @@ Use only these files/folders in scope:
 - `docs/memory/`
 - `docs/run-logs/`
 - `docs/lessons/`
-
-Reference only as needed:
-- `docs/plans/main-orchestration.md`
-- `docs/plans/phase-skill-map.md`
-- `docs/plans/context-and-skill-optimization.md`
 
 Return:
 - summary
@@ -95,9 +88,6 @@ Return:
 
 ## Output File
 
-Write your result to:
+Write result to:
 
 `docs/run-logs/SP-02-output.md`
-
-
-

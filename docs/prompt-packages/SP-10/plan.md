@@ -56,7 +56,7 @@ Defer cloud sync and document a post-MVP decision gate.
 
 - Deferred sync decision is documented.
 - Verification confirms no upload path was added.
-- Memory notes capture risks and future checklist.
+- Memory notes record risks and future checklist.
 
 ## Verification
 

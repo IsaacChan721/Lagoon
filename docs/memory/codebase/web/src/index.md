@@ -10,13 +10,13 @@ Frontend source root for Lagoon shell.
 - `App.tsx`
 - `styles.css`
 - `app/`
-- `capture/`
+- `media-import/`
 
 ## Key Files
 
 - `main.tsx`
 - `App.tsx`
-- `capture/CapturePanel.tsx`
+- `media-import/MediaImportPanel.tsx`
 
 ## Interfaces
 
@@ -34,7 +34,7 @@ Frontend source root for Lagoon shell.
 
 ## Gotchas
 
-- Keep app entry small; feature state now belongs under domain folders such as `src/capture/`.
+- Keep app entry small; feature state now belongs under domain folders such as `src/media-import/`.
 
 ## Last Updated
 

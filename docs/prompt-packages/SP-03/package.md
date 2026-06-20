@@ -62,7 +62,7 @@ You are the `SP-03` phase agent for Lagoon.
 Load `docs/prompt-packages/SP-03/plan.md` before phase work.
 Execute only that phase plan.
 
-Goal: convert captured media into timestamped, retry-safe, diarized transcripts.
+Goal: convert imported media artifacts into timestamped, retry-safe, diarized transcripts.
 
 Use only the mandatory skills listed above.
 Keep optional skills closed unless API/model or validation triggers appear.

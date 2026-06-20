@@ -6,135 +6,71 @@ Execute in `caveman full`. Use normal prose only when clarity or safety would su
 
 ## Keep It Simple
 
-- Treat this phase as an MVP slice.
-- Prefer beginner-readable code and docs over clever abstractions.
-- Do not add extra logic unless required by acceptance criteria, safety, or verification.
-- Put marginal improvements in handoff next steps, not in phase code.
+Treat this phase as an MVP import slice. Prefer beginner-readable code/docs over abstractions. Add no transcription, visual AI, RAG, tutor, provider calls, accounts, cloud sync, or encryption.
 
 ## Goal
 
-Add video and audio capture layer with reliable recording lifecycle.
+Replace recording with local lecture media import. User selects an existing lecture audio/video file, previews it locally, validates support, extracts basic metadata, and creates a stable media artifact for SP-03.
 
 ## Inputs
 
-- `docs/plans/main-orchestration.md`
-- `docs/memory/index.md`
-- `docs/memory/phases/SP-02/index.md`
-- relevant app and storage memory notes
+Read `docs/run-logs/SP-01-output.md`, `docs/memory/phases/SP-01/index.md`, `docs/memory/phases/SP-02/index.md`, `docs/memory/codebase/web/`, `docs/memory/codebase/api/lagoon_local/`, and current SP-02 package/plan.
 
 ## In Scope
 
-- Capture permission flow.
-- Recording start, pause, stop, save handoff.
-- Local media artifact metadata and local file handoff.
-- Capture verification.
+Local file picker. Browser preview. Format validation. File size/duration metadata. Local media artifact metadata. Python storage boundary for imported media. Verification and memory updates.
 
 ## Out Of Scope
 
-- No transcription.
-- No summarization.
-- No RAG.
-- No cloud upload.
-- No encryption requirement for MVP; use local-only files, ignored paths, and clear storage boundaries.
+No recording. No screen recording. No transcription. No frame extraction beyond basic preview metadata. No visual model calls. No summaries. No RAG. No tutor. No cloud upload. No encryption.
 
 ## Execution Steps
 
-1. Confirm `SP-01` foundation gate.
-2. Read capture-related app and storage notes.
-3. Add capture UI/control flow.
-4. Store raw media through the approved local-only file boundary.
-5. Add failure states for denied permission and interrupted recording.
-6. Verify recording lifecycle.
+1. Confirm SP-01 foundation gate and clean current worktree.
+2. Remove current SP-02 recording implementation and docs.
+3. Add media import UI and local preview under `web/src/media-import/`.
+4. Add shared media artifact types for uploaded audio/video.
+5. Update `LocalStorageBoundary` so imported media metadata and local file handoff are explicit and SP-03-ready.
+6. Add `npm run verify:sp02` backed by an import-focused verifier.
+7. Update SP-02 lesson, memory mirrors, package, run log template, and phase docs.
+8. Run checks and create a corrective SP-02 commit.
 
 ## Acceptance Criteria
 
-- User can start and stop recording.
-- Permission denial is handled.
-- Saved media has stable local file reference.
-- Transcription remains untouched.
+User can select a supported lecture file. App shows audio/video preview locally. App displays filename, type, size, duration when available, and stable local reference. Unsupported formats show clear recoverable error. SP-03 can consume the artifact contract without recording assumptions.
 
 ## Definition Of Done
 
-- Capture path verified manually or by automated browser test.
-- Error states are visible and recoverable.
-- Memory notes include media folder/component behavior.
+No browser recording API or recording workflow remains. `npm run verify:sp02`, `npm run verify:sp01`, and `npm run build:web` pass. Memory/docs describe media import. Handoff explains visual strategy and SP-03 contract.
 
 ## Verification
 
-- Run relevant app checks.
-- Use Browser or Playwright to verify capture controls when available.
-- Run `git status --short`.
+Run `npm run verify:sp02`. Run `npm run verify:sp01`. Run `npm run build:web`. Run a scoped source scan for old browser recording APIs and old SP-02 recording paths; confirm no active implementation remains. Run `git status --short`.
 
 ## Troubleshooting
 
-- If browser blocks media devices, use mock media flags or documented manual check.
-- If file save fails, inspect storage boundary, local app-data path, and permissions.
-- If lifecycle race appears, add state-machine style test before fixing.
+If browser cannot preview a codec, still accept metadata only and show metadata error state. If duration is unavailable until metadata loads, keep `durationMs: null` until loaded. If file is too large, store metadata and leave chunking to SP-03. If MIME type is missing, infer from extension and mark confidence low. If browser cannot write app-data directly, keep object URL preview and let Python storage own durable local file handoff.
 
 ## Lesson Plan
 
-Design this phase memory as beginner lesson material. Put no-prerequisite media-capture context first, then build toward browser APIs, state, and local-only save handoff.
-
-### Lesson Depth Standard
-
-Every lesson below must be written and taught as a 60-90 minute beginner module, not a quick concept note. Use the lesson bullets as topic seeds, then expand them with this structure:
-
-1. Zero-prerequisite setup, 5-10 minutes: define every term used in the lesson, explain why the learner should care, and name the files or planned files they will touch.
-2. File map, 10-15 minutes: list each relevant file, folder, command, schema, component, or artifact. For future files, mark them `planned`. Explain what each one owns and what it must not own.
-3. Line-by-line code reading, 15-25 minutes: walk through the smallest real code sample available. If implementation does not exist yet, write planned pseudocode and later replace it with real code. Explain each line or block in beginner language, including imports, data shapes, function inputs, outputs, errors, and side effects.
-4. Guided hands-on exercise, 15-25 minutes: have the learner run a command, inspect output, trace data through one function, update a harmless fixture, or write a tiny example. Include expected output and what to do if it differs.
-5. Debugging or design exercise, 10-20 minutes: give one realistic failure, ask the learner to diagnose it, then provide the answer and the reasoning path.
-6. Theory questions and answers, 10-15 minutes: include at least five Q/A pairs that connect the hands-on work to architecture, privacy, security, testing, or user experience.
-7. Checkpoint, 5-10 minutes: include a small task the learner can complete without help, plus acceptance criteria.
-8. Key takeaways, 5 minutes: list what the learner should remember before moving to the next lesson.
-
-Each lesson must include concrete code or command examples. Prefer real snippets from this codebase once the phase exists. Avoid abstract-only examples. When a lesson covers safety, privacy, auth, encryption, destructive actions, or external providers, spell out the risk clearly and then return to concise style.
-### Created In This Phase
-
-- Capture UI and permission flow.
-- Recording lifecycle code for start, pause, stop, and save.
-- Local media metadata records and local file references.
-- Tests or manual checks for capture controls and failure states.
-
-### Lesson 1: Browser Capture Basics
-
-- Prerequisites: none.
-- Explain: browser capture asks user permission before audio/video stream access.
-- Coding example: show `navigator.mediaDevices.getUserMedia({ audio: true, video: true })` and identify success/error branches.
-- Theory Q/A: Why handle denied permission first? Denial is common and must not break app state.
-- Key takeaways: permission is user-controlled; app must recover cleanly.
-
-### Lesson 2: Recording Lifecycle
-
-- Prerequisites: understand capture permission.
-- Explain: recorder state moves through idle, requesting, recording, paused, saving, saved, and error.
-- Coding example: show a small TypeScript union type for `RecordingState`.
-- Theory Q/A: Why model states explicitly? Start/stop races become easier to test and reason about.
-- Key takeaways: lifecycle bugs come from unclear state transitions; make transitions visible.
-
-### Lesson 3: Local Media Handoff
-
-- Prerequisites: understand recording lifecycle.
-- Explain: raw media becomes a local artifact reference in app data, not a transcript yet.
-- Coding example: show a metadata object with `id`, `localPath`, `durationMs`, `mimeType`, and `createdAt`.
-- Theory Q/A: Why store metadata separately from bytes? Metadata lets later phases find and process media without reading large files constantly.
-- Key takeaways: capture produces local media artifacts only; transcription waits for `SP-03`; encryption and cloud sync are not MVP requirements.
+Create `docs/lessons/SP-02-lecture-media-import.md`. Teach file import, preview, metadata, local-only storage, and why SP-03 owns transcription.
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-02/index.md` and relevant codebase notes for capture components, storage handoff, and known browser constraints.
+Update `docs/memory/phases/SP-02/index.md`, `docs/memory/codebase/web/src/media-import/`, `docs/memory/codebase/api/lagoon_local/storage.md`, `docs/memory/codebase/scripts/`, and related root/web memory notes.
 
 ## Git Checkpoint
 
-After verification and handoff, push this phase by itself:
-
-1. Run `git status --short`.
-2. Run `git add <files changed for SP-02>`.
-3. Run `git commit -m "SP-02: complete phase"`.
-4. Run `git push`.
-
-Commit only scoped SP-02 changes. Leave later-phase ideas in next steps.
+Commit only scoped corrective SP-02 files. Commit message: `SP-02: replace capture with lecture media import`. Push if remote exists; otherwise report no remote.
 
 ## Handoff Output
 
-Write `docs/run-logs/SP-02-output.md` with summary, blockers, contract changes, skill changes, memory updates, tests run, and next gate.
+Write `docs/run-logs/SP-02-output.md` with summary, blockers, contract changes, skill changes, memory updates, phase plan status, tests run, and next gate.
+
+## Visual + Audio Strategy
+
+Default design is audio-first, visuals-supporting. SP-02 imports and previews whole media. SP-03 extracts audio and transcribes with timestamps. SP-04 samples visual frames/slides and links them to transcript segments.
+
+Do not send whole lecture video to a multimodal model by default. For budget, sample frames only at slide/scene changes or at coarse intervals, then analyze representative frames if needed.
+
+Record this decision in memory as: transcript is primary evidence; visuals are supporting evidence unless a future phase proves visual extraction reliable and affordable.

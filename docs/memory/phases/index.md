@@ -7,7 +7,7 @@ Each phase owns one memory folder. Phase agents update their folder during imple
 - `SA-00/`: skill acquisition and validation memory.
 - `SP-00/`: product, risk, repo contract memory.
 - `SP-01/`: local app foundation memory.
-- `SP-02/`: video/audio capture memory.
+- `SP-02/`: lecture media import memory.
 - `SP-03/`: media/transcription memory.
 - `CRIT-01/`: provenance gate memory.
 - `SP-04/`: video understanding memory.

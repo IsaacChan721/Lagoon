@@ -16,7 +16,7 @@ Remaining external action:
 1. `SA-00 Skill Acquisition`
 2. `SP-00 Product, Risk, Repo`
 3. `SP-01 Local App Foundation`
-4. `SP-02 Video + Audio Capture`
+4. `SP-02 Lecture Media Import`
 5. `SP-03 Media + Transcription`
 6. `CRIT-01 Provenance Gate`
 7. `SP-04 Video Understanding`

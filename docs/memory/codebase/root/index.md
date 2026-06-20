@@ -41,7 +41,7 @@ Owns workspace scripts, dependency lock, git ignore policy, and package workspac
 ## Gotchas
 
 - Local content/data folders are ignored to prevent accidental raw lecture data commits.
-- `*.webm` is ignored for SP-02 browser capture output.
+- Raw media extensions remain ignored for imported lecture media.
 - `python` is not on PATH here; verification wrapper falls back to Codex bundled Python.
 - `*.tsbuildinfo` is ignored because TypeScript build info is generated.
 - npm audit is clean after moving build tools to dev dependencies and updating Vite.

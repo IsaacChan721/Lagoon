@@ -26,7 +26,7 @@ Vite React TypeScript local app shell.
 - React 19.
 - Vite 8.
 - TypeScript 5.
-- Browser MediaRecorder API for SP-02 capture.
+- Browser File/object URL APIs for SP-02 Lecture Media Import.
 
 ## Tests
 
@@ -37,7 +37,7 @@ Vite React TypeScript local app shell.
 ## Gotchas
 
 - Dev server binds `127.0.0.1:5173` by default.
-- SP-02 adds media capture UI only; no transcription/provider/sync.
+- SP-02 adds lecture media import UI only; no transcription/provider/sync.
 - `@vitejs/plugin-react` was removed because no custom Vite config uses it; fewer dependencies for MVP.
 
 ## Last Updated

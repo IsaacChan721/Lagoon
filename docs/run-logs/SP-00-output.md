@@ -3,7 +3,7 @@
 ## Summary
 
 - MVP locked: local-first, single-user lecture assistant.
-- First user journey locked: create local lecture workspace, capture/import one lecture later, generate transcript-backed notes/summaries/tutor answers later, all scoped to selected lecture.
+- First user journey locked: create local lecture workspace, import one lecture later, generate transcript-backed notes/summaries/tutor answers later, all scoped to selected lecture.
 - First implementation slice locked for `SP-01`: local app foundation only.
 - Non-goals locked for MVP: cloud sync, accounts, sharing, collaboration, LMS integration, broad autonomous web research, provider calls without explicit consent.
 - Local-first risk model locked: lecture content, transcripts, embeddings, notes, tutor traces, logs, temp files, and API keys are sensitive.

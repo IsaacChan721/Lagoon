@@ -32,7 +32,7 @@ Create Lagoon local app foundation after `SP-00` gate passes.
 
 ## Out Of Scope
 
-- No media capture.
+- No media import.
 - No transcription.
 - No tutor behavior.
 - No cloud sync.

@@ -9,7 +9,7 @@ Validate that later Lagoon phases match the simplified MVP contract set by `SP-0
 - Local-first single-user app.
 - No cloud sync implementation in MVP.
 - No Supabase schema, RLS, hosted auth, or multi-device conflict system in MVP.
-- No encryption system required for MVP media capture or local retrieval.
+- No encryption system required for MVP lecture media import or local retrieval.
 - No online source discovery in MVP summaries.
 - No autonomous agents or generated skill activation in MVP.
 - Prefer simple local text retrieval before embeddings, vector databases, or provider-heavy RAG.
@@ -17,7 +17,7 @@ Validate that later Lagoon phases match the simplified MVP contract set by `SP-0
 
 ## Alignment Changes Validated
 
-- `SP-02` now captures media to local-only file references; encryption and cloud sync are explicit non-requirements.
+- `SP-02` now imports lecture media to local-only file references; encryption and cloud sync are explicit non-requirements.
 - `SP-05` is now local memory plus simple text retrieval, not encrypted hybrid RAG.
 - `SP-06` is now transcript-grounded summaries with local citations, not online source discovery.
 - `SP-07` is now tutor practice over selected lecture evidence, not an autonomous tutor agent.

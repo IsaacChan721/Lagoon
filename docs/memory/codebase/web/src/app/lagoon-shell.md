@@ -2,7 +2,7 @@
 
 ## Purpose
 
-User-facing local shell for privacy defaults, storage boundary, and SP-02 capture entry point.
+User-facing local shell for privacy defaults, storage boundary, and SP-02 Lecture Media Import entry point.
 
 ## Real Code Path
 
@@ -13,7 +13,7 @@ User-facing local shell for privacy defaults, storage boundary, and SP-02 captur
 - Local workspace heading/status.
 - Storage boundary summary.
 - Privacy default status list.
-- Capture panel placement.
+- Media import panel placement.
 
 ## Public Interface
 
@@ -23,12 +23,12 @@ User-facing local shell for privacy defaults, storage boundary, and SP-02 captur
 
 - Reads `privacyDefaults`.
 - Reads `storageBoundary`.
-- Renders `CapturePanel`.
+- Renders `MediaImportPanel`.
 
 ## Dependencies
 
 - React JSX.
-- `web/src/capture/CapturePanel.tsx`.
+- `web/src/media-import/MediaImportPanel.tsx`.
 
 ## Tests
 
@@ -37,7 +37,7 @@ User-facing local shell for privacy defaults, storage boundary, and SP-02 captur
 
 ## Gotchas
 
-- Shell does not own capture internals; capture state and MediaRecorder live in `web/src/capture/`.
+- Shell does not own import internals; media import state lives in `web/src/media-import/`.
 - No workspace creation, provider, transcription, RAG, or sync actions yet.
 
 ## Last Updated

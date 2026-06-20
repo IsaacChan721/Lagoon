@@ -20,7 +20,7 @@ Implement media processing and transcription pipeline.
 - `docs/plans/main-orchestration.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-03/index.md`
-- media capture and storage memory notes
+- imported media artifact and storage memory notes
 
 ## In Scope
 

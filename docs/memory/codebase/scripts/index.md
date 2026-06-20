@@ -8,15 +8,15 @@ Repository verification scripts.
 
 - `verify_sp01_foundation.py`
 - `verify_sp01_foundation.ps1`
-- `verify_sp02_capture.py`
-- `verify_sp02_capture.ps1`
+- `verify_sp02_media_import.py`
+- `verify_sp02_media_import.ps1`
 
 ## Key Files
 
 - `scripts/verify_sp01_foundation.py`
 - `scripts/verify_sp01_foundation.ps1`
-- `scripts/verify_sp02_capture.py`
-- `scripts/verify_sp02_capture.ps1`
+- `scripts/verify_sp02_media_import.py`
+- `scripts/verify_sp02_media_import.ps1`
 
 ## Interfaces
 
@@ -32,7 +32,7 @@ Repository verification scripts.
 ## Tests
 
 - Self-run by `npm run verify:sp01`.
-- SP-02 capture verifier runs by `npm run verify:sp02`.
+- SP-02 Lecture Media Import verifier runs by `npm run verify:sp02`.
 
 ## Gotchas
 

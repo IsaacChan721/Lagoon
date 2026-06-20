@@ -26,7 +26,7 @@
 - SP-01 package had one contradictory docs-only scope line listing only `docs/plans/*`. User goal and SP-01 plan required app scaffold, so implementation followed SP-01 plan/user goal.
 - Added root/package/script files, `web/`, `api/`, and `scripts/` as required scaffold scope.
 - Added `docs/lessons/` as beginner lesson output required by follow-up.
-- No media capture, transcription, RAG, tutor logic, provider calls, accounts, or cloud sync added.
+- No media import, transcription, RAG, tutor logic, provider calls, accounts, or cloud sync added.
 
 ## Skill Changes
 
@@ -72,7 +72,7 @@
 - Passed: `npm audit`.
 - Passed: scoped Vite HTTP smoke at `http://127.0.0.1:5173` returned `STATUS=200` and `HAS_ROOT=True`.
 - Passed after follow-up dependency cleanup: npm audit reported `found 0 vulnerabilities`.
-- Passed: scope scan found no implemented media capture, transcription, RAG, tutor, provider calls, accounts, cloud sync, or content upload path.
+- Passed: scope scan found no implemented media import, transcription, RAG, tutor, provider calls, accounts, cloud sync, or content upload path.
 - Passed: `git status --short`.
 - Git status note: repo remains fully untracked from bootstrap state, including existing `.codex/`, `AGENTS.md`, and new SP-01 scaffold/docs files.
 - Git checkpoint done in follow-up: staged scoped project files and created local commit.
@@ -80,7 +80,7 @@
 
 ## Next Gate
 
-`SP-02 Video + Audio Capture` may start after orchestrator accepts SP-01 and either accepts HTTP/build smoke as UI verification or fixes Browser/Playwright runtime for visual smoke.
+`SP-02 Lecture Media Import` may start after orchestrator accepts SP-01 and either accepts HTTP/build smoke as UI verification or fixes Browser/Playwright runtime for visual smoke.
 
 Before SP-02 content writes, choose encryption/key storage or keep vault writes blocked.
 

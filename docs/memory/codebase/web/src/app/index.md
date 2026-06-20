@@ -2,14 +2,14 @@
 
 ## Purpose
 
-Local app shell, privacy defaults, storage boundary display, and capture panel placement.
+Local app shell, privacy defaults, storage boundary display, and media import panel placement.
 
 ## Contains
 
 - `LagoonShell.tsx`
 - `privacyDefaults.ts`
 - `storageBoundary.ts`
-- Imports `../capture/CapturePanel`
+- Imports `../media-import/MediaImportPanel`
 
 ## Key Files
 
@@ -32,7 +32,7 @@ Local app shell, privacy defaults, storage boundary display, and capture panel p
 
 ## Gotchas
 
-- This folder places media capture in the shell but does not own capture state; `web/src/capture/` owns that domain.
+- This folder places media import in the shell but does not own import state; `web/src/media-import/` owns that domain.
 - Still no transcription, RAG, tutor, provider calls, accounts, or sync.
 
 ## Last Updated

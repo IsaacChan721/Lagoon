@@ -7,12 +7,12 @@ Beginner-facing lessons that explain current Lagoon code in phase order.
 ## Contains
 
 - `SP-01-local-app-foundation.md`
-- `SP-02-video-audio-capture.md`
+- `SP-02-lecture-media-import.md`
 
 ## Key Files
 
 - `docs/lessons/SP-01-local-app-foundation.md`
-- `docs/lessons/SP-02-video-audio-capture.md`
+- `docs/lessons/SP-02-lecture-media-import.md`
 
 ## Interfaces
 
@@ -26,7 +26,7 @@ Beginner-facing lessons that explain current Lagoon code in phase order.
 ## Tests
 
 - `npm run verify:sp01` checks SP-01 lesson exists and includes beginner/sufficiency sections.
-- `npm run verify:sp02` checks capture implementation, not lesson text.
+- `npm run verify:sp02` checks lecture media import implementation and lesson presence.
 
 ## Gotchas
 

@@ -57,7 +57,7 @@ Document post-MVP improvement proposals without activating generated skills.
 
 - Governance flow is tested or documented with fixture.
 - No generated or untrusted skill is installed automatically.
-- Memory notes capture policy and caveats.
+- Memory notes record policy and caveats.
 
 ## Verification
 

@@ -388,7 +388,7 @@ Beginner interpretation:
 
 - This error blocks raw content writes in SP-01.
 - It is a safety placeholder from the first foundation slice.
-- It does not mean encryption is required before MVP capture/retrieval. Current alignment says later MVP phases should use local-only artifact references first.
+- It does not mean encryption is required before MVP media import/retrieval. Current alignment says later MVP phases should use local-only artifact references first.
 
 ### Code Reading: Data Layout
 
@@ -525,7 +525,7 @@ Fix:
 3. Q: Why block `write_content_blob` in SP-01?
    A: SP-01 proves the boundary before later phases decide exact artifact-writing behavior.
 
-4. Q: Does SP-01 require encryption before MVP capture?
+4. Q: Does SP-01 require encryption before MVP media import?
    A: No. Current phase alignment says encryption is a later hardening option, not an MVP blocker.
 
 5. Q: Why create tables before using them?
@@ -540,7 +540,7 @@ Acceptance criteria:
 - Mentions folder creation.
 - Mentions SQLite metadata setup.
 - Says it does not upload content.
-- Says it does not implement media capture.
+- Says it does not implement media import.
 - Says raw content writes remain blocked in SP-01.
 
 ### Key Takeaways
@@ -639,7 +639,7 @@ Meaning:
 
 Meaning:
 
-- The app is not claiming full lecture capture yet.
+- The app is not claiming full lecture import yet.
 - "Vault locked" means SP-01 does not write raw content.
 - It should be read as a safety state, not a mandate to implement encryption immediately.
 
@@ -705,7 +705,7 @@ Fix:
    A: SP-01 proves the foundation before adding workflows.
 
 2. Q: Why not add a "Start Recording" button now?
-   A: Media capture belongs to SP-02.
+   A: Media import belongs to SP-02.
 
 3. Q: Why use imported constants instead of hardcoded text everywhere?
    A: It keeps defaults centralized and easier to verify.
@@ -731,7 +731,7 @@ Acceptance criteria:
 
 - SP-01 UI is a status shell.
 - It displays local-first defaults.
-- It does not implement capture, upload, sync, transcription, or tutoring.
+- It does not implement import, upload, sync, transcription, or tutoring.
 
 ## Lesson 5: Verification And Safe Change Workflow
 
@@ -840,9 +840,9 @@ Problem: a developer wants to add "Upload lecture" in SP-01.
 
 Reasoning path:
 
-1. SP-01 out-of-scope list blocks media capture and upload.
+1. SP-01 out-of-scope list blocks media import and upload.
 2. Privacy defaults say content upload is blocked.
-3. SP-02 owns capture.
+3. SP-02 owns media import.
 4. Cloud upload is not MVP.
 
 Correct action:
@@ -900,7 +900,7 @@ Acceptance criteria:
 
 Do not add these in SP-01:
 
-- media capture,
+- media import,
 - transcription,
 - RAG or vector search,
 - tutor practice,

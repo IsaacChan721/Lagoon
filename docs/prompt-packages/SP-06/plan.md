@@ -25,7 +25,7 @@ Generate transcript-grounded lecture summaries with strict provenance.
 ## In Scope
 
 - Purpose and key takeaway summaries.
-- Transcript and local artifact citation capture.
+- Transcript and local artifact citation recording.
 - Transcript-grounded claims.
 - Provenance failure handling.
 
@@ -56,7 +56,7 @@ Generate transcript-grounded lecture summaries with strict provenance.
 
 - Citation check passes.
 - Summary artifacts are saved locally.
-- Memory notes capture source policy and limits.
+- Memory notes record source policy and limits.
 
 ## Verification
 

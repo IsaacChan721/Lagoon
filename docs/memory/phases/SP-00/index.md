@@ -7,9 +7,9 @@ Track product scope, risk model, phase contracts, repo bootstrap decisions, and 
 ## Locked MVP Scope
 
 - Local-first single-user lecture assistant.
-- First journey: create local lecture workspace, capture or import one lecture, derive transcript/notes later, ask grounded questions against selected lecture later.
+- First journey: create local lecture workspace, import one lecture, derive transcript/notes later, ask grounded questions against selected lecture later.
 - MVP excludes accounts, sharing, multi-user collaboration, cloud sync, LMS integration, autonomous broad web research, and provider calls without explicit consent.
-- First implementation slice for `SP-01`: local app foundation only. It should create project structure, local runtime shell, local persistence boundary, settings/privacy consent surface, and health checks. No media capture, transcription, provider integration, or tutor logic in `SP-01`.
+- First implementation slice for `SP-01`: local app foundation only. It should create project structure, local runtime shell, local persistence boundary, settings/privacy consent surface, and health checks. No media import, transcription, provider integration, or tutor logic in `SP-01`.
 
 ## Local-First Risk Model
 

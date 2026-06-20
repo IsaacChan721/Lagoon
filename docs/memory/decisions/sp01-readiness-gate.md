@@ -21,7 +21,7 @@ The phase plan requires clear MVP scope, explicit local-first security assumptio
 ## Consequences
 
 - `SP-01` acceptance must include app shell, local persistence boundary, privacy/settings defaults, and no network/content upload by default.
-- Media capture, transcription, provider calls, and tutor logic remain locked out until later phases.
+- Media import, transcription, provider calls, and tutor logic remain locked out until later phases.
 - Skill discoverability check should happen before implementation tasks run.
 
 ## Revisit Trigger

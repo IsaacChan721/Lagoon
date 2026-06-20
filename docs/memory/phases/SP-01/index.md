@@ -31,7 +31,7 @@ Track local app foundation: frontend shell, backend API, SQLite metadata, local 
 
 ## Scope Guard
 
-- No media capture.
+- No media import.
 - No transcription.
 - No RAG.
 - No tutor logic.

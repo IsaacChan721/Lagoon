@@ -1,4 +1,4 @@
-import { CapturePanel } from "../capture/CapturePanel";
+import { MediaImportPanel } from "../media-import/MediaImportPanel";
 import { privacyDefaults } from "./privacyDefaults";
 import { storageBoundary } from "./storageBoundary";
 
@@ -50,7 +50,7 @@ export function LagoonShell() {
             </div>
           ))}
         </div>
-        <CapturePanel />
+        <MediaImportPanel />
       </section>
     </main>
   );
