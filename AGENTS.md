@@ -6,6 +6,7 @@ This project inherits global Codex guidance from `C:\Users\isaac\.codex\AGENTS.m
 - Use global multi-agent orchestration rules for complex work, but keep simple fixes inline.
 - Treat `docs/` as project knowledge; check it before inventing structure.
 - Keep generated plans, audits, and handoffs under `docs/` unless user asks for another location.
+- Make every new or updated Markdown doc GitHub-readable using `docs/plans/markdown-presentation-rules.md`: dashboards, tables, callouts, checklists, code fences, and clear stop points where useful.
 - Before editing, inspect current repo state and preserve user changes.
 - Before declaring done, run the narrowest relevant verification available or state why no check was run.
 

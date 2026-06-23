@@ -43,6 +43,26 @@ Execution style:
 - Final output must state whether the phase plan was followed or changed.
 - If changed, explain the contract change and update memory.
 
+## Dependency Scope
+
+Prerequisite files to read:
+- `docs/memory/index.md`
+- `docs/memory/phases/SA-00/index.md`
+
+Editable scope roots:
+- `docs/plans/skill-acquisition-report.md`
+- `docs/plans/phase-skill-map.md`
+- `docs/memory/phases/SA-00/index.md`
+- `docs/run-logs/SA-00-output.md`
+
+Reference-only roots:
+- `docs/plans/main-orchestration.md`
+- `docs/plans/context-and-skill-optimization.md`
+- `docs/plans/custom-skill-optimization.md`
+- `docs/plans/markdown-presentation-rules.md`
+
+Codebase memory mirrors to update:
+- none unless the phase creates or changes repo-local docs/scripts
 ## Memory Bank
 
 Read first:
@@ -58,6 +78,7 @@ Update before finishing:
 You are the `SA-00` phase agent for Lagoon.
 
 Load `docs/prompt-packages/SA-00/plan.md` before phase work.
+Before writing or updating Markdown, read and follow `docs/plans/markdown-presentation-rules.md`.
 Execute only that phase plan.
 
 Goal: install vetted global skills, validate them, audit them for risk, and write the phase skill map inputs used by later phases.
@@ -66,11 +87,7 @@ Use only the mandatory skills listed above.
 Keep optional skills closed unless a third-party security trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
-Use only these files in scope:
-- `docs/plans/main-orchestration.md`
-- `docs/plans/phase-skill-map.md`
-- `docs/plans/context-and-skill-optimization.md`
-- `docs/plans/custom-skill-optimization.md`
+Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
 
 Return:
 - summary
@@ -87,6 +104,4 @@ Return:
 Write your result to:
 
 `docs/run-logs/SA-00-output.md`
-
-
 

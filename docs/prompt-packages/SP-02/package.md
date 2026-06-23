@@ -1,4 +1,4 @@
-# SP-02 Lecture Media Import Package
+﻿# SP-02 Lecture Media Import Package
 
 ## Model
 
@@ -39,11 +39,47 @@ Execution style:
 - Final output must state whether the phase plan was followed or changed.
 - If changed, explain the contract change and update memory.
 
+## Dependency Scope
+
+Prerequisite files to read:
+- `docs/run-logs/SP-01-output.md`
+- `docs/memory/phases/SP-01/index.md`
+- `docs/memory/codebase/web/index.md`
+- `docs/memory/codebase/web/src/app/index.md`
+- `docs/memory/codebase/api/lagoon_local/index.md`
+- `docs/memory/codebase/api/lagoon_local/storage.md`
+- `docs/memory/codebase/scripts/index.md`
+
+Editable scope roots:
+- `web/src/media-import/`
+- `web/src/app/`
+- `web/src/styles.css`
+- `api/lagoon_local/`
+- `scripts/`
+- `package.json`
+- `docs/lessons/`
+- `docs/memory/phases/SP-02/index.md`
+- `docs/memory/codebase/`
+- `docs/run-logs/SP-02-output.md`
+
+Reference-only roots:
+- `docs/plans/main-orchestration.md`
+- `docs/plans/phase-skill-map.md`
+- `docs/plans/context-and-skill-optimization.md`
+- `docs/plans/markdown-presentation-rules.md`
+
+Codebase memory mirrors to update:
+- `docs/memory/codebase/web/src/media-import/`
+- `docs/memory/codebase/web/src/app/`
+- `docs/memory/codebase/api/lagoon_local/`
+- `docs/memory/codebase/scripts/`
+- `docs/memory/codebase/docs/lessons/`
 ## Memory Bank
 
 Read first:
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-02/index.md`
+- `docs/plans/markdown-presentation-rules.md`
 - relevant notes under `docs/memory/codebase/`
 
 Update before finishing:
@@ -55,6 +91,7 @@ Update before finishing:
 You are the `SP-02` phase agent for Lagoon.
 
 Load `docs/prompt-packages/SP-02/plan.md` before phase work.
+Before writing or updating Markdown, read and follow `docs/plans/markdown-presentation-rules.md`.
 Execute only that phase plan.
 
 Goal: implement lecture media import with local preview, metadata extraction, local-only file handoff, and stable UI states.
@@ -91,3 +128,4 @@ Return:
 Write result to:
 
 `docs/run-logs/SP-02-output.md`
+

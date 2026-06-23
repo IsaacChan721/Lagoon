@@ -10,12 +10,14 @@ Owns workspace scripts, dependency lock, git ignore policy, and package workspac
 - `package-lock.json` npm dependency lock.
 - `.gitignore` local-first exclusion rules.
 - `docs/lessons/` beginner learning material.
+- `AGENTS.md` project instructions, including Markdown presentation requirements.
 
 ## Key Files
 
 - `package.json`
 - `package-lock.json`
 - `.gitignore`
+- `AGENTS.md`
 
 ## Interfaces
 
@@ -45,7 +47,8 @@ Owns workspace scripts, dependency lock, git ignore policy, and package workspac
 - `python` is not on PATH here; verification wrapper falls back to Codex bundled Python.
 - `*.tsbuildinfo` is ignored because TypeScript build info is generated.
 - npm audit is clean after moving build tools to dev dependencies and updating Vite.
+- New or updated Markdown should follow `docs/plans/markdown-presentation-rules.md`.
 
 ## Last Updated
 
-SP-02
+Markdown presentation standard added after SP-02

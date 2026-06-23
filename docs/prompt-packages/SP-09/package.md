@@ -44,6 +44,43 @@ Execution style:
 - Final output must state whether the phase plan was followed or changed.
 - If changed, explain the contract change and update memory.
 
+## Dependency Scope
+
+Prerequisite files to read:
+- all prior run logs in `docs/run-logs/`
+- all phase memory notes in `docs/memory/phases/`
+- `docs/memory/codebase/root/index.md`
+- `docs/memory/codebase/web/index.md`
+- `docs/memory/codebase/api/index.md`
+- `docs/memory/codebase/scripts/index.md`
+
+Editable scope roots:
+- `web/`
+- `api/lagoon_local/`
+- `scripts/`
+- `package.json`
+- `web/package.json`
+- `docs/lessons/`
+- `docs/memory/`
+- `docs/run-logs/SP-09-output.md`
+- `.gitignore`
+
+Future roots this phase may create:
+- `tests/`
+- `packaging/`
+- `observability/`
+- `docs/memory/codebase/tests/`
+- `docs/memory/codebase/packaging/`
+- `docs/memory/codebase/observability/`
+
+Reference-only roots:
+- `docs/plans/main-orchestration.md`
+- `docs/plans/phase-skill-map.md`
+- `docs/plans/context-and-skill-optimization.md`
+- `docs/plans/markdown-presentation-rules.md`
+
+Codebase memory mirrors to update:
+- `docs/memory/codebase/`
 ## Memory Bank
 
 Read first:
@@ -60,6 +97,7 @@ Update before finishing:
 You are the `SP-09` phase agent for Lagoon.
 
 Load `docs/prompt-packages/SP-09/plan.md` before phase work.
+Before writing or updating Markdown, read and follow `docs/plans/markdown-presentation-rules.md`.
 Execute only that phase plan.
 
 Goal: harden tests, observability, and Windows packaging for the local app.
@@ -68,10 +106,7 @@ Use only the mandatory skills listed above.
 Keep optional skills closed unless a release or UI trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
-Use only these files in scope:
-- `docs/plans/main-orchestration.md`
-- `docs/plans/phase-skill-map.md`
-- `docs/plans/context-and-skill-optimization.md`
+Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
 
 Return:
 - summary
@@ -88,6 +123,4 @@ Return:
 Write your result to:
 
 `docs/run-logs/SP-09-output.md`
-
-
 

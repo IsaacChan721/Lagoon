@@ -44,6 +44,46 @@ Execution style:
 - Final output must state whether the phase plan was followed or changed.
 - If changed, explain the contract change and update memory.
 
+## Dependency Scope
+
+Prerequisite files to read:
+- `docs/run-logs/SP-02-output.md`
+- `docs/run-logs/SP-01-output.md`
+- `docs/memory/phases/SP-02/index.md`
+- `docs/memory/phases/SP-03/index.md`
+- `docs/memory/codebase/web/src/media-import/index.md`
+- `docs/memory/codebase/api/lagoon_local/storage.md`
+- `docs/memory/codebase/scripts/index.md`
+
+Editable scope roots:
+- `api/lagoon_local/`
+- `scripts/`
+- `package.json`
+- `docs/lessons/`
+- `docs/memory/phases/SP-03/index.md`
+- `docs/memory/codebase/api/lagoon_local/`
+- `docs/memory/codebase/scripts/`
+- `docs/run-logs/SP-03-output.md`
+
+Future roots this phase may create:
+- `api/lagoon_local/media/`
+- `api/lagoon_local/transcription/`
+- `api/lagoon_local/jobs/`
+- `docs/memory/codebase/api/lagoon_local/media/`
+- `docs/memory/codebase/api/lagoon_local/transcription/`
+- `docs/memory/codebase/api/lagoon_local/jobs/`
+
+Reference-only roots:
+- `web/src/media-import/`
+- `docs/plans/main-orchestration.md`
+- `docs/plans/phase-skill-map.md`
+- `docs/plans/context-and-skill-optimization.md`
+- `docs/plans/markdown-presentation-rules.md`
+
+Codebase memory mirrors to update:
+- `docs/memory/codebase/api/lagoon_local/`
+- `docs/memory/codebase/scripts/`
+- `docs/memory/codebase/docs/lessons/`
 ## Memory Bank
 
 Read first:
@@ -60,6 +100,7 @@ Update before finishing:
 You are the `SP-03` phase agent for Lagoon.
 
 Load `docs/prompt-packages/SP-03/plan.md` before phase work.
+Before writing or updating Markdown, read and follow `docs/plans/markdown-presentation-rules.md`.
 Execute only that phase plan.
 
 Goal: convert imported media artifacts into timestamped, retry-safe, diarized transcripts.
@@ -68,10 +109,7 @@ Use only the mandatory skills listed above.
 Keep optional skills closed unless API/model or validation triggers appear.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
-Use only these files in scope:
-- `docs/plans/main-orchestration.md`
-- `docs/plans/phase-skill-map.md`
-- `docs/plans/context-and-skill-optimization.md`
+Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
 
 Return:
 - summary
@@ -88,6 +126,4 @@ Return:
 Write your result to:
 
 `docs/run-logs/SP-03-output.md`
-
-
 

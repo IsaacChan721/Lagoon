@@ -34,6 +34,7 @@ Remaining external action:
 - Prevent phase agents from mutating canonical lecture memory directly; require structured outputs, patches, or proposals.
 - Keep every phase as an MVP slice: beginner-readable code/docs, no extra logic unless required by acceptance criteria, safety, or verification.
 - Move marginal improvements to phase handoff next steps instead of adding complexity during the phase.
+- Enforce `docs/plans/markdown-presentation-rules.md` for every generated or updated Markdown plan, lesson, run log, audit, handoff, package, README, and memory note.
 - Own user confirmations, security decisions, privacy gates, provider/API consent, and final promotion.
 - Verify every phase with tests and UI/browser smoke checks where relevant.
 - Require each phase to finish with its own `git add`, `git commit`, and `git push` after verification and handoff.
@@ -57,6 +58,7 @@ Rules:
 - Keep context under the phase budget.
 - Write no broad refactors.
 - Keep code beginner-readable. Add no marginal or speculative logic.
+- Format Markdown with `docs/plans/markdown-presentation-rules.md`: dashboard, tables, callouts, checklists, code fences, verification, and stop points where useful.
 - Do not edit files outside assigned scope unless the main agent approves.
 - Return changed files, tests run, risks, and open questions.
 - Summarize large docs before using them; quote only small relevant parts.
@@ -96,6 +98,7 @@ Every phase must:
 - update `docs/memory/phases/<phase-id>/index.md`,
 - update matching `docs/memory/codebase/` notes for generated or changed folders/components,
 - report memory updates in its output file.
+- keep generated memory Markdown GitHub-readable with tables/checklists when the note contains more than a few facts.
 
 ## Custom Lagoon Skills
 

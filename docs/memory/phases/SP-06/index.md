@@ -6,6 +6,13 @@ Track transcript-grounded summaries, local evidence policy, citation coverage, a
 
 ## Expected Codebase Mirrors
 
-- `docs/memory/codebase/api/app/summaries/`
-- `docs/memory/codebase/api/app/evidence/`
+- `docs/memory/codebase/api/lagoon_local/summaries/`
+- `docs/memory/codebase/api/lagoon_local/evidence/`
 - `docs/memory/codebase/web/src/summaries/`
+
+## Prerequisite Context
+
+- Read `docs/run-logs/SP-05-output.md` for retrieval contract.
+- Read `docs/run-logs/SP-04-output.md` for visual support outputs if present.
+- Read `docs/run-logs/CRIT-01-output.md` before emitting grounded summaries.
+- Read `docs/run-logs/SP-03-output.md` for transcript artifacts.

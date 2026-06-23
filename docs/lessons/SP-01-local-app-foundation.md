@@ -1,5 +1,31 @@
 # SP-01 Local App Foundation Lesson
 
+> [!NOTE]
+> SP-01 teaches Lagoon's local-first foundation. It proves repo shape, privacy defaults, storage boundaries, and verification before later media features appear.
+
+## Learning Dashboard
+
+| Item | Details |
+| --- | --- |
+| Learner goal | Understand how the first Lagoon app slice fits together and how to make small safe changes. |
+| Main feature | Local App Foundation |
+| Phase boundary | App shell, privacy defaults, local storage boundary, SQLite metadata, one verification path. |
+| Best first check | `npm run verify:sp01` |
+| Follow-up check | `npm run build:web` |
+| Time box | 60-90 minutes |
+
+## Quick Navigation
+
+| Section | Best for |
+| --- | --- |
+| [Beginner Path](#beginner-path) | Know which files to read first. |
+| [Lesson Map](#lesson-map) | See the full module at a glance. |
+| [Lesson 1](#lesson-1-repo-shape-and-ownership) | Learn folder ownership. |
+| [Lesson 2](#lesson-2-privacy-defaults-across-frontend-and-backend) | Trace privacy defaults. |
+| [Lesson 3](#lesson-3-local-storage-boundary-and-sqlite-metadata) | Understand local metadata storage. |
+| [Lesson 4](#lesson-4-app-shell-code-tour) | Read the React shell. |
+| [Lesson 5](#lesson-5-verification-and-safe-change-workflow) | Verify safe changes. |
+
 ## Purpose
 
 Teach a beginner developer how the first Lagoon app slice fits together, how to read the current code, and how to make safe small changes without accidentally building later-phase features.
@@ -12,15 +38,18 @@ The original SP-01 lesson plan was directionally correct, but too short for the 
 
 This expanded lesson fixes that by adding:
 
-- exact files to open,
-- line-by-line and block-by-block code tours,
-- hands-on commands with expected results,
-- debugging drills,
-- theory Q/A sections,
-- checkpoints and acceptance criteria,
-- explicit MVP stop points.
+| Improvement | Why it matters |
+| --- | --- |
+| Exact files to open | Learners do not need to guess where to start. |
+| Line-by-line and block-by-block code tours | Code becomes readable before it becomes editable. |
+| Hands-on commands with expected results | Verification becomes concrete. |
+| Debugging drills | Learners practice diagnosis, not random editing. |
+| Theory Q/A sections | Concepts connect to implementation. |
+| Checkpoints and acceptance criteria | Progress becomes testable. |
+| Explicit MVP stop points | SP-01 does not accidentally become SP-02+. |
 
-Important alignment note: SP-01 uses a vault/write-blocking placeholder as a safety boundary. That does not mean encryption is required before MVP media features. Later MVP phases should use local-only artifact references unless a separate hardening plan approves encryption.
+> [!IMPORTANT]
+> SP-01 uses a vault/write-blocking placeholder as a safety boundary. That does **not** mean encryption is required before MVP media features. Later MVP phases should use local-only artifact references unless a separate hardening plan approves encryption.
 
 ## Beginner Path
 
@@ -36,15 +65,19 @@ Read files in this order:
 
 Why this order: start with plain frontend data, then UI display, then backend equivalents, then storage setup, then verification commands.
 
-## Time Plan
+## Lesson Map
 
 This is not a one-minute skim. Treat each lesson as a 60-90 minute beginner module.
 
-- Lesson 1: Repo shape and ownership.
-- Lesson 2: Privacy defaults across frontend and backend.
-- Lesson 3: Local storage boundary and SQLite metadata.
-- Lesson 4: App shell code tour.
-- Lesson 5: Verification and safe change workflow.
+| Lesson | Focus | Done when |
+| --- | --- | --- |
+| 1 | Repo shape and ownership | You know which folder owns each kind of change. |
+| 2 | Privacy defaults across frontend and backend | You can trace local-first defaults in TypeScript and Python. |
+| 3 | Local storage boundary and SQLite metadata | You can explain what `ensure_layout()` creates and what it avoids. |
+| 4 | App shell code tour | You can trace privacy/status values onto the screen. |
+| 5 | Verification and safe change workflow | You can run checks and avoid phase creep. |
+
+---
 
 ## Lesson 1: Repo Shape And Ownership
 
@@ -58,11 +91,13 @@ None. This lesson assumes the learner has only basic command-line familiarity.
 
 ### Files And Folders
 
-- `web/`: browser UI. Owns visible text, React components, frontend constants, Vite build.
-- `api/`: local Python package. Owns local privacy defaults, storage path rules, SQLite metadata setup.
-- `scripts/`: project checks. Owns repeatable verification commands.
-- `docs/`: plans, memory, lessons, run logs. Owns explanation and phase handoff.
-- `package.json`: root command menu. Owns scripts such as `verify:sp01` and `build:web`.
+| Path | Owns |
+| --- | --- |
+| `web/` | Browser UI, visible text, React components, frontend constants, Vite build. |
+| `api/` | Local Python package, privacy defaults, storage path rules, SQLite metadata setup. |
+| `scripts/` | Repeatable verification commands. |
+| `docs/` | Plans, memory, lessons, run logs, phase handoff. |
+| `package.json` | Root command menu, including `verify:sp01` and `build:web`. |
 
 ### Hands-On Setup
 
@@ -105,10 +140,12 @@ Line-by-line meaning:
 
 Before editing, ask: which folder owns this change?
 
-- User-facing copy? `web/`.
-- Local storage schema? `api/`.
-- Verification rule? `scripts/`.
-- Lesson or phase explanation? `docs/`.
+| Change type | Owner |
+| --- | --- |
+| User-facing copy | `web/` |
+| Local storage schema | `api/` |
+| Verification rule | `scripts/` |
+| Lesson or phase explanation | `docs/` |
 
 ### Debugging Drill
 
@@ -176,18 +213,22 @@ Know the repo folders from Lesson 1. Basic boolean knowledge helps: `true` means
 
 ### Files
 
-- `web/src/app/privacyDefaults.ts`
-- `api/lagoon_local/settings.py`
-- `web/src/app/LagoonShell.tsx`
-- `scripts/verify_sp01_foundation.py`
+| File | Why open it |
+| --- | --- |
+| `web/src/app/privacyDefaults.ts` | Frontend source of displayed privacy defaults. |
+| `api/lagoon_local/settings.py` | Backend source of persisted privacy defaults. |
+| `web/src/app/LagoonShell.tsx` | UI mapping from booleans to visible text. |
+| `scripts/verify_sp01_foundation.py` | Contract check for SP-01 behavior. |
 
 ### Zero-Prerequisite Terms
 
-- Privacy default: what the app does before the user changes settings.
-- Local-only: lecture content stays on the device by default.
-- Provider call: request to an external AI/API service.
-- Telemetry: app usage/error data sent outside the device.
-- Log redaction: removing sensitive details from logs.
+| Term | Meaning |
+| --- | --- |
+| Privacy default | What the app does before the user changes settings. |
+| Local-only | Lecture content stays on the device by default. |
+| Provider call | Request to an external AI/API service. |
+| Telemetry | App usage/error data sent outside the device. |
+| Log redaction | Removing sensitive details from logs. |
 
 ### Code Reading: Frontend Defaults
 
@@ -325,10 +366,12 @@ Fix:
 
 Task: explain why these defaults are safe:
 
-- `localOnly: true`
-- `networkEnabledForContent: false`
-- `cloudSyncEnabled: false`
-- `redactLogs: true`
+| Default | Expected safety idea |
+| --- | --- |
+| `localOnly: true` | Lecture content stays local by default. |
+| `networkEnabledForContent: false` | Content network access is blocked by default. |
+| `cloudSyncEnabled: false` | No default upload/sync path exists. |
+| `redactLogs: true` | Logs avoid exposing sensitive lecture content. |
 
 Acceptance criteria:
 
@@ -360,11 +403,13 @@ Know privacy defaults from Lesson 2. Basic understanding of folders and database
 
 ### Zero-Prerequisite Terms
 
-- Storage boundary: the code that decides where local app data lives.
-- SQLite: a small local database stored in one file.
-- Metadata: information about content, not the full content itself.
-- App data path: OS-specific folder for local application data.
-- Safety placeholder: code that blocks risky behavior until a later phase designs it.
+| Term | Meaning |
+| --- | --- |
+| Storage boundary | Code that decides where local app data lives. |
+| SQLite | Small local database stored in one file. |
+| Metadata | Information about content, not the full content itself. |
+| App data path | OS-specific folder for local application data. |
+| Safety placeholder | Code that blocks risky behavior until a later phase designs it. |
 
 ### Code Reading: Constants And Error
 
@@ -473,9 +518,11 @@ Meaning:
 
 Inside `_ensure_metadata`, read each `create table` block:
 
-- `app_settings`: stores settings like `schema_version`, `local_only`, `cloud_sync_enabled`.
-- `lecture_workspaces`: future workspace metadata, not full lecture media.
-- `vault_objects`: placeholder metadata for future artifacts.
+| Table | Role |
+| --- | --- |
+| `app_settings` | Stores settings like `schema_version`, `local_only`, `cloud_sync_enabled`. |
+| `lecture_workspaces` | Future workspace metadata, not full lecture media. |
+| `vault_objects` | Placeholder metadata for future artifacts. |
 
 Important: SP-01 does not save raw lecture media, transcript text, or embeddings.
 
@@ -561,11 +608,13 @@ Know the privacy defaults and storage boundary from Lessons 2 and 3. Basic JSX f
 
 ### Files
 
-- `web/src/app/LagoonShell.tsx`
-- `web/src/app/privacyDefaults.ts`
-- `web/src/app/storageBoundary.ts`
-- `web/src/main.tsx`
-- `web/src/styles.css`
+| File | Why open it |
+| --- | --- |
+| `web/src/app/LagoonShell.tsx` | Main visible SP-01 shell. |
+| `web/src/app/privacyDefaults.ts` | Privacy constants used by shell. |
+| `web/src/app/storageBoundary.ts` | Local boundary constants shown in UI. |
+| `web/src/main.tsx` | React app entry point. |
+| `web/src/styles.css` | Visual layout and styling. |
 
 ### Code Reading: Imports
 
@@ -672,13 +721,15 @@ http://127.0.0.1:5173
 
 Expected page signals:
 
-- "Local Lecture Workspace"
-- "Ready for local metadata. Vault locked."
-- "Privacy Defaults"
-- Content network Off
-- Provider calls Off
-- Cloud sync Off
-- Upload blocked
+| Signal | Expected value |
+| --- | --- |
+| Workspace title | "Local Lecture Workspace" |
+| Workspace status | "Ready for local metadata. Vault locked." |
+| Section | "Privacy Defaults" |
+| Content network | Off |
+| Provider calls | Off |
+| Cloud sync | Off |
+| Upload | blocked |
 
 Stop the dev server after inspection.
 
@@ -766,9 +817,12 @@ npm run build:web
 
 Why this order:
 
-- `verify:sp01` checks the phase contract.
-- `build:web` checks TypeScript and bundling.
-- Narrow failure messages are usually easier to diagnose.
+| Command | Checks |
+| --- | --- |
+| `npm run verify:sp01` | SP-01 phase contract. |
+| `npm run build:web` | TypeScript and Vite bundling. |
+
+Narrow failure messages are usually easier to diagnose, so run `verify:sp01` first.
 
 ### Code Reading: Verification Script
 
@@ -900,13 +954,15 @@ Acceptance criteria:
 
 Do not add these in SP-01:
 
-- media import,
-- transcription,
-- RAG or vector search,
-- tutor practice,
-- provider calls,
-- accounts,
-- cloud sync,
-- encryption system work.
+| Feature | Why stop |
+| --- | --- |
+| Media import | SP-02 owns it. |
+| Transcription | Later phase owns it. |
+| RAG or vector search | Later retrieval phase owns it. |
+| Tutor practice | Later learning workflow owns it. |
+| Provider calls | Needs explicit consent and phase contract. |
+| Accounts | Outside local-first foundation. |
+| Cloud sync | Outside MVP default. |
+| Encryption system work | Post-MVP hardening unless separately approved. |
 
 Those belong to later phases or post-MVP hardening decisions.
