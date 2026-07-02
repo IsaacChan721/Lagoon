@@ -5,7 +5,7 @@
 - Replaced SP-02 recording slice with lecture media import.
 - Added `web/src/media-import/` for file selection, validation, object URL preview, metadata extraction, status UI, and uploaded artifact contract.
 - Added browser preview using `<video controls>` for video and `<audio controls>` for audio.
-- Added `UploadedMediaArtifact` fields for `sourceType`, original filename, MIME type, extension, size, duration, kind, local reference, object URL, creation time, and metadata confidence.
+- Added `UploadedMediaArtifact` fields for `sourceType`, original filename, MIME type, extension, size, duration, kind, durable local reference, preview-only object URL, creation time, and metadata confidence.
 - Updated `LocalStorageBoundary.register_uploaded_media_artifact()` to copy selected media into app-data `media/` and record SQLite metadata for SP-03.
 - Added import-focused `npm run verify:sp02`.
 - Updated SP-02 plan, package, lesson, run log, and memory.
@@ -20,7 +20,7 @@
 
 - SP-02 phase name is now `SP-02 Lecture Media Import`.
 - SP-02 no longer records media. It imports existing lecture audio/video and prepares a stable local artifact reference.
-- SP-03 should consume imported media artifact IDs/local references, then own audio extraction, chunking, upload-limit handling, and transcription.
+- SP-03 should consume imported media artifact IDs/durable local references, then own audio extraction, provider-size chunking, upload-limit handling, transcription, and semantic transcript chunks.
 - Visual strategy: transcript is primary evidence; visuals are supporting evidence unless a future phase proves visual extraction reliable and affordable.
 
 ## Skill Changes
@@ -52,4 +52,4 @@
 
 ## Next Gate
 
-SP-03 may start after SP-02 verification passes. Before transcription work, SP-03 must read the uploaded media artifact contract and treat audio transcript as primary evidence.
+SP-03 may start after SP-02 verification passes. Before transcription work, SP-03 must read the uploaded media artifact contract, use durable local references instead of preview object URLs, and treat transcript chunks as primary retrieval evidence.

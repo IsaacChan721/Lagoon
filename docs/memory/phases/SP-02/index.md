@@ -11,7 +11,7 @@ Track lecture media import, browser-local preview, uploaded media artifact metad
 - Supported extensions: `.mp4`, `.webm`, `.mov`, `.m4v`, `.mp3`, `.m4a`, `.wav`, `.mpeg`, and `.mpga`.
 - Browser preview uses object URLs and revokes them on reset/unmount.
 - Video imports render with `<video controls>`; audio imports render with `<audio controls>`.
-- Uploaded artifact contract includes `sourceType: "uploaded-file"`, original filename, MIME type, extension, size, duration, media kind, local reference, object URL, creation time, and metadata confidence.
+- Uploaded artifact contract includes `sourceType: "uploaded-file"`, original filename, MIME type, extension, size, duration, media kind, durable local reference, preview-only object URL, creation time, and metadata confidence.
 - Added `LocalStorageBoundary.register_uploaded_media_artifact()` for copying imported media into app-data `media/` and recording SQLite metadata.
 - Raw media paths remain ignored by Git via `media/` and media extension rules.
 - Added `npm run verify:sp02` as narrow import verifier.
@@ -37,7 +37,7 @@ Track lecture media import, browser-local preview, uploaded media artifact metad
 
 Default design is audio-first, visuals-supporting. Transcript is primary evidence; visuals are supporting evidence unless a future phase proves visual extraction reliable and affordable.
 
-SP-02 imports and previews whole media. SP-03 extracts audio and transcribes with timestamps. SP-04 samples visual frames/slides and links them to transcript segments. Do not send whole lecture video to a multimodal model by default.
+SP-02 imports and previews whole media. SP-03 extracts audio, transcribes with absolute timestamps, and creates semantic transcript chunks for RAG. SP-04 samples visual frames/slides and links them to transcript segments/chunks. Do not send whole lecture video to a multimodal model by default.
 
 ## Gotchas
 

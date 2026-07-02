@@ -226,10 +226,10 @@ Transcript is primary evidence; visuals are supporting evidence unless a future 
 
 | Future phase | Expected role |
 | --- | --- |
-| SP-03 | Extract/transcribe audio with timestamps. |
-| SP-04 | Sample frames or slides and link them to transcript segments. |
+| SP-03 | Read durable imported media artifacts, extract audio, handle provider-size chunks, transcribe with absolute timestamps, and create semantic transcript chunks. |
+| SP-04 | Sample frames or slides from durable media paths and link visual evidence to transcript segments/chunks. |
 
-Do not send whole lecture video to a multimodal model by default. Sample representative frames for budget control.
+Do not send whole lecture video to a multimodal model by default. Sample representative frames for budget control, and keep SP-03 transcript chunks as primary retrieval evidence.
 
 ### Checks
 

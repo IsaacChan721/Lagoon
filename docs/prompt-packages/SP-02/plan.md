@@ -69,7 +69,7 @@ Write `docs/run-logs/SP-02-output.md` with summary, blockers, contract changes, 
 
 ## Visual + Audio Strategy
 
-Default design is audio-first, visuals-supporting. SP-02 imports and previews whole media. SP-03 extracts audio and transcribes with timestamps. SP-04 samples visual frames/slides and links them to transcript segments.
+Default design is audio-first, visuals-supporting. SP-02 imports and previews whole media. SP-03 extracts audio, transcribes with absolute timestamps, and creates semantic transcript chunks for RAG. SP-04 samples visual frames/slides and links them to transcript segments/chunks.
 
 Do not send whole lecture video to a multimodal model by default. For budget, sample frames only at slide/scene changes or at coarse intervals, then analyze representative frames if needed.
 
