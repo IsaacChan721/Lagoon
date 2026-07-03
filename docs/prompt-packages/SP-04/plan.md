@@ -20,12 +20,12 @@ Add video understanding only where it improves lecture learning value.
 - `docs/plans/main-orchestration.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-04/index.md`
-- media and transcript memory notes
+- media, transcript, transcript chunk, and provenance memory notes
 
 ## In Scope
 
 - Key frame or key moment extraction.
-- Visual evidence linked to transcript time ranges.
+- Visual evidence linked to transcript segment/chunk time ranges.
 - Visual claim guardrails.
 - Verification fixtures.
 
@@ -40,13 +40,13 @@ Add video understanding only where it improves lecture learning value.
 1. Confirm provenance gate allows visual enrichment.
 2. Read media/transcript contracts.
 3. Define minimal visual extraction path.
-4. Link visual outputs to transcript timestamps.
+4. Link visual outputs to absolute transcript timestamps and nearby transcript chunks.
 5. Add no-fake-visual-claims checks.
 6. Verify with sample or fixture.
 
 ## Acceptance Criteria
 
-- Visual notes reference exact media time ranges.
+- Visual notes reference exact media time ranges and nearest transcript chunk/segment IDs when available.
 - Unsupported visual claims are blocked or marked uncertain.
 - Extraction failure does not break transcript workflow.
 - Outputs are stored in local memory/artifact boundary.
@@ -65,7 +65,8 @@ Add video understanding only where it improves lecture learning value.
 
 ## Troubleshooting
 
-- If frame extraction fails, test media codec and timestamp handling.
+- If frame extraction fails, test media codec, durable media path, and timestamp handling.
+- If visual notes do not align with transcript chunks, inspect SP-03 absolute timestamp conversion before changing visual sampling.
 - If model output overclaims, tighten prompt/schema and add citation check.
 - If cost is high, reduce sampled frames before changing feature scope.
 
@@ -90,7 +91,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 ### Created In This Phase
 
 - Key frame or key moment extraction logic.
-- Visual artifact records linked to media and transcript time ranges.
+- Visual artifact records linked to media, transcript segment IDs, transcript chunk IDs, and time ranges.
 - Guardrails for uncertain or unsupported visual claims.
 - Fixtures or manual checks for frame extraction and evidence links.
 
@@ -98,14 +99,14 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - Prerequisites: none.
 - Explain: visuals help understand slides, diagrams, boards, and demos that transcript text may miss.
-- Coding example: show a visual note object with `mediaArtifactId`, `timeRange`, `framePath`, and `observedText`.
+- Coding example: show a visual note object with `mediaArtifactId`, `timeRange`, `framePath`, `transcriptChunkIds`, `segmentIds`, and `observedText`.
 - Theory Q/A: Why avoid broad computer vision? MVP needs lecture learning value, not general image analysis.
 - Key takeaways: visual output must point back to exact media time.
 
 ### Lesson 2: Frame Extraction
 
 - Prerequisites: understand visual evidence object.
-- Explain: extraction samples frames or key moments from recorded media.
+- Explain: extraction samples frames or key moments from imported lecture media using durable local artifact paths.
 - Coding example: show pseudocode for `extractFrames(mediaPath, timestamps)` returning local frame paths.
 - Theory Q/A: Why test codec and timestamps first? Most extraction bugs are format or offset problems.
 - Key takeaways: frame paths, timestamps, and media IDs must stay synchronized.
@@ -120,7 +121,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-04/index.md` and codebase notes for visual artifact flow, evidence links, and limitations.
+Update `docs/memory/phases/SP-04/index.md` and codebase notes for visual artifact flow, transcript chunk alignment, evidence links, and limitations.
 
 ## Git Checkpoint
 

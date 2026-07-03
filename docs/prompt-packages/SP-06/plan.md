@@ -20,12 +20,12 @@ Generate transcript-grounded lecture summaries with strict provenance.
 - `docs/plans/main-orchestration.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-06/index.md`
-- transcript, visual, and provenance memory notes
+- transcript chunk, visual, retrieval, and provenance memory notes
 
 ## In Scope
 
 - Purpose and key takeaway summaries.
-- Transcript and local artifact citation recording.
+- Transcript chunk, transcript segment, and local artifact citation recording.
 - Transcript-grounded claims.
 - Provenance failure handling.
 
@@ -39,7 +39,7 @@ Generate transcript-grounded lecture summaries with strict provenance.
 ## Execution Steps
 
 1. Confirm provenance gate passed.
-2. Read transcript and citation contracts.
+2. Read transcript chunk, visual evidence, retrieval, and citation contracts.
 3. Generate transcript-grounded summary.
 4. Attach transcript/local artifact citations.
 5. Remove or mark unsupported claims.
@@ -48,7 +48,8 @@ Generate transcript-grounded lecture summaries with strict provenance.
 ## Acceptance Criteria
 
 - Summary states purpose and key takeaways.
-- Every factual claim has transcript or local artifact citation.
+- Every factual claim has transcript chunk, transcript segment, visual artifact, or approved local artifact citation.
+- Citation metadata preserves absolute time ranges and source IDs.
 - Unsupported claims are removed or marked uncertain.
 - Summary citations are stored with provenance metadata.
 
@@ -61,7 +62,7 @@ Generate transcript-grounded lecture summaries with strict provenance.
 ## Verification
 
 - Run summary/citation tests if present.
-- Manually spot-check citations against transcript/local artifact.
+- Manually spot-check citations against transcript chunks, transcript segments, and local artifacts.
 - Run `git status --short`.
 
 ## Troubleshooting
@@ -91,7 +92,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 ### Created In This Phase
 
 - Summary artifact with purpose and key takeaways.
-- Citation metadata for transcript-grounded and local artifact claims.
+- Citation metadata for transcript chunk-grounded, transcript segment-grounded, visual, and local artifact claims.
 - Provenance failure handling.
 - Tests or manual checks for citation coverage.
 
@@ -107,7 +108,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - Prerequisites: understand summary shape.
 - Explain: every factual claim must connect to transcript, visual evidence, or approved external source.
-- Coding example: show `claim.sourceIds` pointing to transcript segment IDs.
+- Coding example: show `claim.sourceIds` pointing to transcript chunk IDs and transcript segment IDs.
 - Theory Q/A: What if evidence is weak? Omit claim or mark uncertainty.
 - Key takeaways: unsupported certainty is a bug.
 
@@ -129,7 +130,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-06/index.md` and codebase notes for summary artifacts, citation rules, and local evidence limits.
+Update `docs/memory/phases/SP-06/index.md` and codebase notes for summary artifacts, transcript chunk citation rules, and local evidence limits.
 
 ## Git Checkpoint
 

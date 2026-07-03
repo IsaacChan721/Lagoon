@@ -52,6 +52,8 @@ Prerequisite files to read:
 - `docs/memory/phases/CRIT-01/index.md`
 - `docs/memory/phases/SP-03/index.md`
 - `docs/memory/codebase/api/lagoon_local/`
+- `docs/memory/codebase/api/lagoon_local/transcript_chunks/`
+- `docs/memory/codebase/api/lagoon_local/transcription/`
 
 Editable scope roots:
 - `api/lagoon_local/`
@@ -97,13 +99,15 @@ Load `docs/prompt-packages/SP-05/plan.md` before phase work.
 Before writing or updating Markdown, read and follow `docs/plans/markdown-presentation-rules.md`.
 Execute only that phase plan.
 
-Goal: build simple local lecture memory and text retrieval after provenance exists.
+Goal: build local lecture memory and retrieval over SP-03 transcript chunks after provenance exists.
 
 Use only the mandatory skills listed above.
 Keep optional skills closed unless a security or eval trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
+Index SP-03 transcript chunks directly. Do not rechunk in a way that loses `chunkId`, source segment IDs, `mediaArtifactId`, or absolute time ranges.
+Keep retrieval schema embedding-ready. Paid embeddings/vector DB are optional provider upgrades, not MVP blockers.
 
 Return:
 - summary

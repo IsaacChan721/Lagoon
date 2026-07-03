@@ -53,7 +53,10 @@ Prerequisite files to read:
 - `docs/memory/phases/SP-05/index.md`
 - `docs/memory/phases/SP-04/index.md`
 - `docs/memory/phases/CRIT-01/index.md`
+- `docs/memory/phases/SP-03/index.md`
 - `docs/memory/codebase/api/lagoon_local/`
+- `docs/memory/codebase/api/lagoon_local/transcript_chunks/`
+- `docs/memory/codebase/api/lagoon_local/retrieval/`
 
 Editable scope roots:
 - `api/lagoon_local/`
@@ -101,13 +104,15 @@ Load `docs/prompt-packages/SP-06/plan.md` before phase work.
 Before writing or updating Markdown, read and follow `docs/plans/markdown-presentation-rules.md`.
 Execute only that phase plan.
 
-Goal: produce grounded lecture summaries with transcript and local artifact citations only.
+Goal: produce grounded lecture summaries with transcript chunk, transcript segment, visual, and local artifact citations only.
 
 Use only the mandatory skills listed above.
 Keep optional skills closed unless a UI or imported-content safety trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
+Use SP-03 transcript chunks and SP-05 retrieval outputs as primary summary evidence.
+Every factual summary claim must cite source IDs and absolute time ranges.
 
 Return:
 - summary

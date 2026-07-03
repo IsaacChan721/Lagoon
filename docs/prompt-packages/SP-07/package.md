@@ -52,7 +52,10 @@ Prerequisite files to read:
 - `docs/memory/phases/SP-06/index.md`
 - `docs/memory/phases/SP-05/index.md`
 - `docs/memory/phases/CRIT-01/index.md`
+- `docs/memory/phases/SP-03/index.md`
 - `docs/memory/codebase/api/lagoon_local/`
+- `docs/memory/codebase/api/lagoon_local/transcript_chunks/`
+- `docs/memory/codebase/api/lagoon_local/retrieval/`
 
 Editable scope roots:
 - `api/lagoon_local/`
@@ -105,6 +108,8 @@ Keep optional skills closed unless an explicit API or speech trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
+Tutor context must come through SP-05 retrieval over SP-03 transcript chunks.
+Preserve selected lecture boundaries, chunk IDs, citation IDs, and absolute media time ranges in questions, answers, and feedback.
 
 Return:
 - summary

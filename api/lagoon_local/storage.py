@@ -11,7 +11,7 @@ from uuid import uuid4
 from .settings import default_privacy_settings
 
 
-SCHEMA_VERSION: Final[int] = 3
+SCHEMA_VERSION: Final[int] = 4
 
 
 class EncryptionNotConfiguredError(RuntimeError):
@@ -24,6 +24,8 @@ class StorageLayout:
     metadata_db: Path
     vault_dir: Path
     media_dir: Path
+    transcripts_dir: Path
+    transcript_chunks_dir: Path
     temp_dir: Path
     logs_dir: Path
 
@@ -65,12 +67,16 @@ class LocalStorageBoundary:
             metadata_db=self.root / "metadata.sqlite3",
             vault_dir=self.root / "vault",
             media_dir=self.root / "media",
+            transcripts_dir=self.root / "transcripts",
+            transcript_chunks_dir=self.root / "transcript_chunks",
             temp_dir=self.root / "tmp",
             logs_dir=self.root / "logs",
         )
 
         layout.vault_dir.mkdir(parents=True, exist_ok=True)
         layout.media_dir.mkdir(parents=True, exist_ok=True)
+        layout.transcripts_dir.mkdir(parents=True, exist_ok=True)
+        layout.transcript_chunks_dir.mkdir(parents=True, exist_ok=True)
         layout.temp_dir.mkdir(parents=True, exist_ok=True)
         layout.logs_dir.mkdir(parents=True, exist_ok=True)
         self._ensure_metadata(layout.metadata_db)
@@ -275,6 +281,7 @@ class LocalStorageBoundary:
                 """
             )
             self._ensure_media_artifacts_schema(conn)
+            self._ensure_transcription_schema(conn)
             conn.execute(
                 """
                 insert into app_settings (key, value, updated_at)
@@ -387,3 +394,34 @@ class LocalStorageBoundary:
                 """
             )
         conn.execute("drop table media_artifacts_legacy")
+
+    def _ensure_transcription_schema(self, conn: sqlite3.Connection) -> None:
+        conn.execute(
+            """
+            create table if not exists transcript_artifacts (
+                id text primary key,
+                lecture_id text not null,
+                media_artifact_id text not null,
+                local_path text not null,
+                provider text not null,
+                status text not null,
+                created_at text not null default current_timestamp,
+                foreign key (media_artifact_id) references media_artifacts(id)
+            )
+            """
+        )
+        conn.execute(
+            """
+            create table if not exists transcript_chunk_artifacts (
+                id text primary key,
+                lecture_id text not null,
+                media_artifact_id text not null,
+                transcript_artifact_id text not null,
+                local_path text not null,
+                embedding_status text not null,
+                created_at text not null default current_timestamp,
+                foreign key (media_artifact_id) references media_artifacts(id),
+                foreign key (transcript_artifact_id) references transcript_artifacts(id)
+            )
+            """
+        )

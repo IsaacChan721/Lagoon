@@ -5,8 +5,10 @@ This folder mirrors generated code folders with Markdown notes instead of code.
 Example:
 
 ```text
-web/src/components/RecorderControls.tsx
-docs/memory/codebase/web/src/components/recorder-controls.md
+web/src/media-import/MediaImportPanel.tsx
+docs/memory/codebase/web/src/media-import/media-import-panel.md
+api/lagoon_local/storage.py
+docs/memory/codebase/api/lagoon_local/storage.md
 ```
 
 ## Mirror Rules
@@ -30,4 +32,3 @@ Each note should include:
 - Tests
 - Gotchas
 - Last updated by phase
-

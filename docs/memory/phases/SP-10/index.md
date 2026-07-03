@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Track deferred cloud sync decision, future approval checklist, no-upload verification, and post-MVP risk questions.
+Track deferred cloud sync decision, transcript chunk/embedding sensitivity, future approval checklist, no-upload verification, and post-MVP risk questions.
 
 ## Expected Codebase Mirrors
 
@@ -15,3 +15,6 @@ Track deferred cloud sync decision, future approval checklist, no-upload verific
 - Read all prior run logs in `docs/run-logs/`.
 - Read `docs/memory/decisions/local-first-risk-model.md`.
 - Treat `api/lagoon_local/sync/` and `web/src/sync/` as future roots only if user explicitly approves cloud sync implementation.
+- Treat media, transcripts, transcript chunks, embeddings, summaries, tutor traces, and provenance records as sensitive sync data.
+- Future sync requires explicit user approval, threat model, encryption plan, RLS/authz plan, conflict handling, deletion/export plan, and rollback.
+- Verify no MVP upload path exists for transcript chunks or embeddings.

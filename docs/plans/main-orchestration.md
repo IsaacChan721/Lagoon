@@ -30,6 +30,7 @@ Remaining external action:
 ## Main Agent Responsibilities
 
 - Maintain the canonical phase contract and data model.
+- Treat SP-03 semantic transcript chunks as the canonical retrieval unit after transcription; downstream phases preserve chunk IDs, source segment IDs, and absolute media time ranges.
 - Dispatch one focused subagent per implementation task when work is independent.
 - Prevent phase agents from mutating canonical lecture memory directly; require structured outputs, patches, or proposals.
 - Keep every phase as an MVP slice: beginner-readable code/docs, no extra logic unless required by acceptance criteria, safety, or verification.
@@ -105,8 +106,8 @@ Every phase must:
 Create these after the first implementation pass proves the patterns are stable:
 - `lagoon-orchestrator`: phase gates, subagent contracts, promotion rules.
 - `lagoon-local-first-security`: local-only boundaries, temp-file/log redaction, and no-upload checks.
-- `lagoon-media-pipeline`: FFmpeg chunking, retries, transcript stitching.
-- `lagoon-retrieval-evals`: simple retrieval metrics, citation checks, held-out fixtures.
+- `lagoon-media-pipeline`: audio extraction, provider-limit media chunking, retries, transcript stitching, timestamp offsets, and semantic transcript chunks.
+- `lagoon-retrieval-evals`: transcript chunk retrieval metrics, optional embedding evals, citation checks, held-out fixtures.
 - `lagoon-tutor-policy`: grading rules, selected-lecture boundary, no fake citations.
 - `lagoon-improvement-governance`: proposal-only artifacts, eval-before-implementation, approval gates.
 

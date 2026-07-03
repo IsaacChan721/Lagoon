@@ -12,13 +12,13 @@ Validate that later Lagoon phases match the simplified MVP contract set by `SP-0
 - No encryption system required for MVP lecture media import or local retrieval.
 - No online source discovery in MVP summaries.
 - No autonomous agents or generated skill activation in MVP.
-- Prefer simple local text retrieval before embeddings, vector databases, or provider-heavy RAG.
+- Prefer SP-03 semantic transcript chunks as canonical retrieval units. Keep local text search as fallback; add embeddings only behind explicit provider/config, cost controls, and eval evidence.
 - External provider calls remain explicit, feature-scoped, and deferred until a phase proves the need.
 
 ## Alignment Changes Validated
 
 - `SP-02` now imports lecture media to local-only file references; encryption and cloud sync are explicit non-requirements.
-- `SP-05` is now local memory plus simple text retrieval, not encrypted hybrid RAG.
+- `SP-05` is now local retrieval over SP-03 transcript chunks with an embedding-ready schema, not encrypted hybrid RAG or mandatory cloud vector search.
 - `SP-06` is now transcript-grounded summaries with local citations, not online source discovery.
 - `SP-07` is now tutor practice over selected lecture evidence, not an autonomous tutor agent.
 - `SP-08` is now manual post-MVP improvement proposals, not generated skill activation.

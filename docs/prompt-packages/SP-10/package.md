@@ -50,6 +50,8 @@ Prerequisite files to read:
 - `docs/memory/decisions/local-first-risk-model.md`
 - `docs/memory/codebase/root/index.md`
 - `docs/memory/codebase/api/index.md`
+- `docs/memory/codebase/api/lagoon_local/transcript_chunks/`
+- `docs/memory/codebase/api/lagoon_local/retrieval/`
 
 Editable scope roots:
 - `docs/sync-decision/`
@@ -102,6 +104,8 @@ Keep optional skills closed unless a future sync security review trigger appears
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
+Treat media, transcripts, transcript chunks, embeddings, summaries, and tutor traces as sensitive sync data.
+Verify no MVP upload path exists for those artifacts. Future sync needs explicit approval, threat model, encryption plan, RLS/authz plan, conflict handling, deletion/export plan, and rollback.
 
 Return:
 - summary

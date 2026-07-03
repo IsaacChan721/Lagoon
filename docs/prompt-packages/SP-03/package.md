@@ -32,7 +32,7 @@
 
 - 1-3 skills open
 - 1-2 repo docs
-- only media/transcription files
+- only media/transcription/chunking files
 
 ## Phase Plan
 
@@ -69,9 +69,11 @@ Future roots this phase may create:
 - `api/lagoon_local/media/`
 - `api/lagoon_local/transcription/`
 - `api/lagoon_local/jobs/`
+- `api/lagoon_local/transcript_chunks/`
 - `docs/memory/codebase/api/lagoon_local/media/`
 - `docs/memory/codebase/api/lagoon_local/transcription/`
 - `docs/memory/codebase/api/lagoon_local/jobs/`
+- `docs/memory/codebase/api/lagoon_local/transcript_chunks/`
 
 Reference-only roots:
 - `web/src/media-import/`
@@ -103,18 +105,24 @@ Load `docs/prompt-packages/SP-03/plan.md` before phase work.
 Before writing or updating Markdown, read and follow `docs/plans/markdown-presentation-rules.md`.
 Execute only that phase plan.
 
-Goal: convert imported media artifacts into timestamped, retry-safe, diarized transcripts.
+Goal: convert imported lecture media artifacts into timestamped, retry-safe transcripts plus semantic transcript chunks for later RAG.
 
 Use only the mandatory skills listed above.
-Keep optional skills closed unless API/model or validation triggers appear.
+Keep optional skills closed unless API/model, pricing, or validation triggers appear.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
+Use durable local media artifact references from `SP-02`; browser object URLs are preview-only and must not drive backend processing.
+Chunk media only for provider/file-limit reasons. Chunk transcripts for RAG after stitching, using sentence, pause, or segment boundaries.
+Preserve absolute `startMs`/`endMs`, source segment IDs, and `mediaArtifactId` on every transcript chunk.
+Diarization is optional and cost/provider-dependent; document whether skipped, deferred, or enabled.
 
 Return:
 - summary
 - blockers
 - contract changes
+- provider/cost decision
+- offline/free fallback status
 - skill changes
 - memory bank updates
 - phase plan status

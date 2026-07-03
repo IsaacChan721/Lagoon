@@ -31,8 +31,8 @@ docs/memory/
   phases/
     SP-01/index.md
   codebase/
-    web/src/components/recorder-controls.md
-    api/app/routes/lectures.md
+    web/src/media-import/index.md
+    api/lagoon_local/transcript_chunks/index.md
   decisions/
     local-first-storage-boundary.md
   templates/
@@ -60,7 +60,8 @@ When vault becomes large:
 - Add a tiny script to find notes by title, tags, code path, and phase.
 
 When semantic search becomes needed:
-- Add retrieval over `docs/memory/`, not over raw code first. Prefer simple text search before embeddings.
+- Add retrieval over `docs/memory/`, not over raw code first.
+- Keep text search as fallback; add embeddings only when evals prove value and storage/cost/privacy rules are clear.
 - Keep Markdown notes as source of truth.
 
 ## Guardrails

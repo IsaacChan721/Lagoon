@@ -6,6 +6,7 @@
   "scripts": {
     "verify:sp01": "powershell -ExecutionPolicy Bypass -File scripts/verify_sp01_foundation.ps1",
     "verify:sp02": "powershell -ExecutionPolicy Bypass -File scripts/verify_sp02_media_import.ps1",
+    "verify:sp03": "powershell -ExecutionPolicy Bypass -File scripts/verify_sp03_transcription.ps1",
     "test": "powershell -ExecutionPolicy Bypass -File scripts/verify_sp01_foundation.ps1",
     "dev:web": "npm --prefix web run dev",
     "build:web": "npm --prefix web run build"

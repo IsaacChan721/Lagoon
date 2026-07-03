@@ -20,11 +20,12 @@ Harden, package, and prepare Lagoon local MVP for release.
 - `docs/plans/main-orchestration.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-09/index.md`
-- app, security, tutor, and storage memory notes
+- app, media, transcript chunk, retrieval, security, tutor, and storage memory notes
 
 ## In Scope
 
 - Security and privacy hardening.
+- Media/transcript/chunk/embedding leak review.
 - Packaging/install path.
 - Regression verification.
 - Release notes and rollback guidance.
@@ -40,7 +41,7 @@ Harden, package, and prepare Lagoon local MVP for release.
 
 1. Read all phase gate outputs through memory.
 2. Run narrow then broad checks.
-3. Review secrets, local files, logs, and unsafe IO.
+3. Review secrets, provider keys, raw media, extracted audio, transcripts, transcript chunks, embeddings, local files, logs, temp paths, and unsafe IO.
 4. Validate package/install path.
 5. Document rollback and known risks.
 6. Produce release readiness decision.
@@ -48,7 +49,7 @@ Harden, package, and prepare Lagoon local MVP for release.
 ## Acceptance Criteria
 
 - MVP checks pass or blockers are explicit.
-- No known secret or transcript leak path remains.
+- No known secret, raw media, extracted audio, transcript, transcript chunk, embedding, or tutor trace leak path remains.
 - Install/run path is documented.
 - Release decision is clear.
 
@@ -69,7 +70,7 @@ Harden, package, and prepare Lagoon local MVP for release.
 
 - If broad checks fail, isolate first failing subsystem.
 - If packaging fails, verify environment assumptions before changing code.
-- If release risk is high, mark blocked instead of shipping.
+- If media/transcript/chunk privacy risk is high, mark blocked instead of shipping.
 
 ## Lesson Plan
 
@@ -100,7 +101,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - Prerequisites: none.
 - Explain: hardening reduces leaks, unsafe defaults, brittle errors, and release risk before packaging.
-- Coding example: show checks for secrets, local data ignores, and disabled cloud upload defaults.
+- Coding example: show checks for secrets, local data ignores, raw media/transcript/chunk paths, and disabled cloud upload defaults.
 - Theory Q/A: Why avoid new major features here? Release phase should stabilize existing MVP, not add new uncertainty.
 - Key takeaways: hardening is risk reduction, not feature growth.
 
@@ -130,7 +131,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-09/index.md` and codebase notes for release status, package path, risks, and rollback.
+Update `docs/memory/phases/SP-09/index.md` and codebase notes for release status, package path, media/transcript privacy risks, and rollback.
 
 ## Git Checkpoint
 

@@ -20,11 +20,12 @@ Gate source provenance and security before enrichment phases continue.
 - `docs/plans/main-orchestration.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/CRIT-01/index.md`
-- transcript and storage memory notes
+- transcript, transcript chunk, and storage memory notes
 
 ## In Scope
 
 - Validate transcript integrity assumptions.
+- Validate transcript chunk provenance and timestamp continuity.
 - Review citation/source trust boundary.
 - Review prompt-injection and unsafe content paths.
 - Block next phase if provenance policy is weak.
@@ -39,14 +40,17 @@ Gate source provenance and security before enrichment phases continue.
 
 1. Read security and provenance docs/memory.
 2. Identify assets, attackers, and trust boundaries.
-3. Review transcript/source evidence chain.
-4. Define citation requirements and blocked source types.
-5. Return pass/fail gate with required fixes.
+3. Review transcript/source evidence chain, including transcript segment IDs, transcript chunk IDs, media artifact IDs, and absolute time ranges.
+4. Confirm browser object URLs are excluded from durable provenance and backend processing.
+5. Define citation requirements and blocked source types.
+6. Return pass/fail gate with required fixes.
 
 ## Acceptance Criteria
 
 - Trust boundaries are explicit.
 - Citation/provenance policy is testable.
+- Transcript chunks cite source transcript segments and original media time ranges.
+- Durable artifact IDs, not browser object URLs, are used for trusted evidence.
 - Prompt-injection risks are named with mitigations.
 - `SP-04` or `SP-06` is blocked if source policy is incomplete.
 
@@ -58,13 +62,14 @@ Gate source provenance and security before enrichment phases continue.
 
 ## Verification
 
-- Run `rg -n "provenance|citation|trust boundary|prompt injection" docs`.
+- Run `rg -n "provenance|citation|trust boundary|prompt injection|transcript chunk|mediaArtifactId|object URL" docs`.
 - Run any available security/static checks.
 - Run `git status --short`.
 
 ## Troubleshooting
 
-- If evidence chain is missing, block rather than guess.
+- If transcript chunk evidence chain is missing, block rather than guess.
+- If timestamps are relative to provider chunks but not converted to absolute lecture time, block downstream citation use.
 - If source type is ambiguous, classify as untrusted until policy says otherwise.
 - If online content can enter prompts, require sanitization and citation checks.
 
@@ -89,7 +94,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 ### Created In This Phase
 
 - Provenance gate result: pass, conditional pass, or blocked.
-- Trust-boundary notes for transcript, source, prompt, and storage paths.
+- Trust-boundary notes for transcript, transcript chunk, source, prompt, and storage paths.
 - Required fixes for weak citation or unsafe content handling.
 - Handoff report explaining whether enrichment phases may continue.
 
@@ -97,7 +102,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - Prerequisites: none.
 - Explain: provenance records where a fact came from and why app can trust it.
-- Coding example: show a citation object with `sourceType`, `artifactId`, `timeRange`, `quote`, and `confidence`.
+- Coding example: show a citation object with `sourceType`, `artifactId`, `chunkId`, `segmentIds`, `timeRange`, `quote`, and `confidence`.
 - Theory Q/A: Why block if evidence is missing? Later summaries and tutor answers would look trustworthy without proof.
 - Key takeaways: no evidence means no trusted claim.
 
@@ -127,7 +132,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 ## Memory Updates
 
-Update `docs/memory/phases/CRIT-01/index.md` with gate result, risks, required mitigations, and next phase permission.
+Update `docs/memory/phases/CRIT-01/index.md` with gate result, transcript/chunk provenance risks, required mitigations, and next phase permission.
 
 ## Git Checkpoint
 

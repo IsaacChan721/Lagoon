@@ -9,12 +9,14 @@ Beginner-facing lessons that explain current Lagoon code in phase order.
 - `README.md`
 - `SP-01-local-app-foundation.md`
 - `SP-02-lecture-media-import.md`
+- `SP-03-media-transcription.md`
 
 ## Key Files
 
 - `docs/lessons/README.md`
 - `docs/lessons/SP-01-local-app-foundation.md`
 - `docs/lessons/SP-02-lecture-media-import.md`
+- `docs/lessons/SP-03-media-transcription.md`
 
 ## Interfaces
 
@@ -30,6 +32,7 @@ Beginner-facing lessons that explain current Lagoon code in phase order.
 
 - `npm run verify:sp01` checks SP-01 lesson exists and includes beginner/sufficiency sections.
 - `npm run verify:sp02` checks lecture media import implementation and lesson presence.
+- `npm run verify:sp03` checks media transcription implementation and lesson presence.
 
 ## Gotchas
 
@@ -39,4 +42,4 @@ Beginner-facing lessons that explain current Lagoon code in phase order.
 
 ## Last Updated
 
-Markdown presentation standard added after SP-02
+SP-03

@@ -20,11 +20,12 @@ Build simple selected-lecture tutor practice over local lecture memories.
 - `docs/plans/main-orchestration.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-07/index.md`
-- local retrieval, summary, and provenance memory notes
+- local retrieval, transcript chunk, summary, and provenance memory notes
 
 ## In Scope
 
 - Selected-lecture tutoring boundary.
+- Evidence-backed tutor input using retrieved transcript chunks.
 - Quiz mode.
 - Hands-on question mode.
 - End-to-end challenge mode.
@@ -38,7 +39,7 @@ Build simple selected-lecture tutor practice over local lecture memories.
 
 ## Execution Steps
 
-1. Confirm local retrieval and citation contracts.
+1. Confirm local retrieval, transcript chunk, and citation contracts.
 2. Define tutor input: selected lectures, mode, difficulty.
 3. Implement simple tutor flow using retrieval boundary.
 4. Add grading rubric and answer feedback.
@@ -49,7 +50,8 @@ Build simple selected-lecture tutor practice over local lecture memories.
 
 - Tutor uses only selected lectures unless user allows sources.
 - Quiz, hands-on, and end-to-end modes work.
-- Feedback cites memory or source evidence.
+- Feedback cites retrieved transcript chunks, summary claims, visual evidence, or approved source evidence.
+- Tutor output preserves `chunkId`/citation IDs and absolute time ranges.
 - Unknown answers are admitted, not fabricated.
 
 ## Definition Of Done
@@ -66,9 +68,9 @@ Build simple selected-lecture tutor practice over local lecture memories.
 
 ## Troubleshooting
 
-- If tutor hallucinates, tighten retrieval-only answer policy or reduce generated behavior.
+- If tutor hallucinates, tighten retrieval-only answer policy, require cited chunk IDs, or reduce generated behavior.
 - If grading is vague, add rubric examples.
-- If context is too large, summarize lecture memory before retrieval prompt.
+- If context is too large, reduce retrieved chunks by score/time range before adding summaries.
 
 ## Lesson Plan
 
@@ -99,7 +101,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - Prerequisites: none.
 - Explain: tutor practice helps learner review selected lecture content using grounded evidence.
-- Coding example: show a tutor request with `lectureIds`, `mode`, `question`, and `retrievedEvidence`.
+- Coding example: show a tutor request with `lectureIds`, `mode`, `question`, and retrieved evidence containing `chunkId`, `timeRange`, and `citation`.
 - Theory Q/A: Why restrict to selected lectures? Learner expects answers from current class context, not unrelated memory.
 - Key takeaways: tutor practice is scoped help, not an autonomous agent or open-ended chatbot.
 
@@ -129,7 +131,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-07/index.md` and codebase notes for tutor-practice contract, modes, grading, and boundary rules.
+Update `docs/memory/phases/SP-07/index.md` and codebase notes for tutor-practice contract, transcript chunk evidence, modes, grading, and boundary rules.
 
 ## Git Checkpoint
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Track frame sampling, OCR, selected vision analysis, frame evidence, and transcript-video alignment.
+Track frame sampling, OCR, selected vision analysis, frame evidence, transcript-video alignment, and transcript chunk links.
 
 ## Expected Codebase Mirrors
 
@@ -16,3 +16,7 @@ Track frame sampling, OCR, selected vision analysis, frame evidence, and transcr
 - Read `docs/run-logs/CRIT-01-output.md` before trusting transcript/media provenance.
 - Read `docs/run-logs/SP-03-output.md` for transcript timestamps.
 - Read `docs/run-logs/SP-02-output.md` for imported media artifact references.
+- Use SP-03 absolute `startMs`/`endMs` values as the only timeline coordinate system.
+- Link visual artifacts to nearby transcript chunk IDs and transcript segment IDs when available.
+- Use durable local media artifact paths for extraction. Browser object URLs remain frontend preview-only.
+- Keep transcript primary. Visual outputs support slides, diagrams, boards, and demos, with uncertainty labels when evidence is weak.

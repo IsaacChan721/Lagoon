@@ -49,10 +49,12 @@ Prerequisite files to read:
 - `docs/run-logs/SP-07-output.md`
 - `docs/run-logs/SP-06-output.md`
 - `docs/run-logs/SP-05-output.md`
+- `docs/run-logs/SP-03-output.md`
 - `docs/run-logs/CRIT-01-output.md`
 - `docs/memory/phases/SP-07/index.md`
 - `docs/memory/phases/SP-06/index.md`
 - `docs/memory/phases/SP-05/index.md`
+- `docs/memory/phases/SP-03/index.md`
 - `docs/memory/phases/CRIT-01/index.md`
 - `docs/memory/decisions/index.md`
 
@@ -108,6 +110,7 @@ Keep optional skills closed unless a security review trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
+Any proposal touching transcript chunking, embeddings, retrieval, summaries, or tutor policy must include eval evidence and rollback notes before approval.
 
 Return:
 - summary

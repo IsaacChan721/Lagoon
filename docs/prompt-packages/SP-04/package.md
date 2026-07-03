@@ -53,6 +53,8 @@ Prerequisite files to read:
 - `docs/memory/phases/SP-03/index.md`
 - `docs/memory/phases/SP-02/index.md`
 - `docs/memory/codebase/api/lagoon_local/`
+- `docs/memory/codebase/api/lagoon_local/transcription/`
+- `docs/memory/codebase/api/lagoon_local/transcript_chunks/`
 - `docs/memory/codebase/web/src/media-import/index.md`
 
 Editable scope roots:
@@ -100,13 +102,16 @@ Load `docs/prompt-packages/SP-04/plan.md` before phase work.
 Before writing or updating Markdown, read and follow `docs/plans/markdown-presentation-rules.md`.
 Execute only that phase plan.
 
-Goal: extract frame evidence, OCR, and optional vision captions from lecture video.
+Goal: extract frame evidence, OCR, and optional vision captions from imported lecture media as transcript-supporting evidence.
 
 Use only the mandatory skills listed above.
 Keep optional skills closed unless a vision or visual QA trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
+Use SP-03 absolute media timestamps and transcript chunks as alignment anchors.
+Use durable local media paths, not browser object URLs, for frame extraction.
+Visual evidence is supporting evidence. Transcript remains primary unless this phase proves stronger visual confidence for a narrow claim.
 
 Return:
 - summary

@@ -21,12 +21,13 @@ Document post-MVP improvement proposals without activating generated skills.
 - `docs/plans/custom-skill-optimization.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-08/index.md`
-- tutor and eval memory notes
+- tutor, retrieval, transcript chunk, and eval memory notes
 
 ## In Scope
 
 - Manual improvement proposal notes.
 - Eval-before-implementation gate.
+- Retrieval/chunk-quality eval requirement for tutor or RAG improvements.
 - Explicit user approval path.
 - Security review checklist for any future generated skill.
 
@@ -41,7 +42,7 @@ Document post-MVP improvement proposals without activating generated skills.
 
 1. Read custom skill governance docs.
 2. Define lightweight proposal note format and review states.
-3. Add eval gate before any future implementation.
+3. Add eval gate before any future implementation, including transcript chunk, retrieval, or tutor-policy changes.
 4. Add explicit user approval requirement.
 5. Add security checklist for future generated skill content.
 6. Verify proposal flow with a small fixture.
@@ -49,7 +50,7 @@ Document post-MVP improvement proposals without activating generated skills.
 ## Acceptance Criteria
 
 - Improvements are proposal-only by default.
-- Eval result is required before implementation.
+- Eval result is required before implementation, with retrieval/chunk-quality evidence for RAG or tutor changes.
 - User approval path exists.
 - Security review blocks unsafe future skill instructions.
 
@@ -68,6 +69,7 @@ Document post-MVP improvement proposals without activating generated skills.
 ## Troubleshooting
 
 - If improvement value is unclear, keep proposal deferred.
+- If proposal changes transcript chunking, embeddings, retrieval, or tutor policy, require fixture evidence before approval.
 - If eval is flaky, require repeated pass before implementation.
 - If security concern appears, quarantine proposal and block phase.
 
@@ -92,7 +94,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 ### Created In This Phase
 
 - Manual improvement proposal artifact format.
-- Eval-before-implementation gate.
+- Eval-before-implementation gate for skill, retrieval, transcript chunk, and tutor changes.
 - User approval path.
 - Security review notes for any future generated skills.
 

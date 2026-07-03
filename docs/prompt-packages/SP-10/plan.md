@@ -20,13 +20,13 @@ Defer cloud sync and document a post-MVP decision gate.
 - `docs/plans/main-orchestration.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-10/index.md`
-- storage, security, and release memory notes
+- storage, media, transcript chunk, embedding, security, and release memory notes
 
 ## In Scope
 
 - Post-MVP sync decision criteria.
 - Explicit user approval requirements.
-- Risks and non-goals for cloud sync.
+- Risks and non-goals for syncing media, transcripts, transcript chunks, embeddings, summaries, and tutor traces.
 - Future implementation checklist.
 
 ## Out Of Scope
@@ -42,15 +42,15 @@ Defer cloud sync and document a post-MVP decision gate.
 2. Read storage/security memory.
 3. Document why sync is deferred from MVP.
 4. Define user approval criteria for any future sync project.
-5. List future security questions: auth, encryption, RLS, conflicts, recovery.
-6. Verify no MVP code path uploads lecture content.
+5. List future security questions: auth, encryption, RLS, conflicts, recovery, embedding sensitivity, deletion, and export.
+6. Verify no MVP code path uploads lecture content, transcript chunks, embeddings, summaries, or tutor traces.
 
 ## Acceptance Criteria
 
 - Cloud sync is absent from MVP runtime.
 - Future sync requires explicit user approval and a new implementation plan.
 - Security questions are listed but not implemented.
-- No default upload path exists.
+- No default upload path exists for media, transcript chunks, embeddings, summaries, or tutor traces.
 
 ## Definition Of Done
 
@@ -61,13 +61,13 @@ Defer cloud sync and document a post-MVP decision gate.
 ## Verification
 
 - Verify no cloud sync code path exists in MVP.
-- Verify no plaintext lecture content leaves local storage.
+- Verify no plaintext lecture content, transcript chunks, embeddings, summaries, or tutor traces leave local storage.
 - Run `git status --short`.
 
 ## Troubleshooting
 
 - If user requests sync, create a new post-MVP plan first.
-- If auth/RLS/encryption is uncertain, keep sync out of MVP.
+- If auth/RLS/encryption/embedding privacy is uncertain, keep sync out of MVP.
 - If future sync risk is high, document blocker instead of implementing.
 
 ## Lesson Plan
@@ -92,7 +92,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - Deferred sync decision note.
 - Future approval checklist.
-- Risk register for auth, encryption, RLS, conflicts, and recovery.
+- Risk register for auth, encryption, RLS, conflicts, recovery, embeddings, deletion, and export.
 - Verification that MVP has no cloud upload path.
 
 ### Lesson 1: Why Sync Is Deferred
@@ -100,14 +100,14 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 - Prerequisites: none.
 - Explain: Lagoon MVP is local-first, so cloud sync is deferred until the local app is useful and stable.
 - Coding example: show settings fields with no `syncEnabled` runtime path and a future-only `syncDecisionStatus`.
-- Theory Q/A: Why no default cloud upload? Lecture content is sensitive and sync adds auth, storage, conflicts, and privacy work outside MVP.
+- Theory Q/A: Why no default cloud upload? Lecture content, transcript chunks, embeddings, summaries, and tutor traces are sensitive; sync adds auth, storage, conflicts, and privacy work outside MVP.
 - Key takeaways: deferral is a valid product decision; consent is required before future sync work.
 
 ### Lesson 2: Future Security Questions
 
 - Prerequisites: understand sync deferral.
-- Explain: future sync must answer auth, encryption, authorization, conflicts, and recovery before code starts.
-- Coding example: show a checklist object with `authPlan`, `encryptionPlan`, `authorizationPlan`, and `rollbackPlan`.
+- Explain: future sync must answer auth, encryption, authorization, conflicts, deletion/export, embedding sensitivity, and recovery before code starts.
+- Coding example: show a checklist object with `authPlan`, `encryptionPlan`, `authorizationPlan`, `embeddingPrivacyPlan`, `deletionPlan`, and `rollbackPlan`.
 - Theory Q/A: Why not implement encryption now? MVP does not upload content, so encryption work would add complexity without user-visible value.
 - Key takeaways: never add sync primitives before the product needs and risks are approved.
 
@@ -123,13 +123,13 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - Prerequisites: understand approval gate.
 - Explain: MVP verification should prove no lecture content upload path exists.
-- Coding example: run `rg -n "fetch\\(|axios|upload|Supabase|syncEnabled|cloud" api web docs` and explain expected findings.
+- Coding example: run `rg -n "fetch\\(|axios|upload|Supabase|syncEnabled|cloud|embedding|transcript_chunks" api web docs` and explain expected findings.
 - Theory Q/A: Why verify absence? Local-first promises fail if hidden upload paths appear.
 - Key takeaways: no-upload verification protects MVP simplicity and user trust.
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-10/index.md` and codebase notes for deferred sync decision, future checklist, and no-upload verification.
+Update `docs/memory/phases/SP-10/index.md` and codebase notes for deferred sync decision, transcript chunk/embedding sensitivity, future checklist, and no-upload verification.
 
 ## Git Checkpoint
 

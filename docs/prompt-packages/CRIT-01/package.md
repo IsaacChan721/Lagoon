@@ -50,6 +50,8 @@ Prerequisite files to read:
 - `docs/memory/phases/SP-03/index.md`
 - `docs/memory/phases/SP-02/index.md`
 - `docs/memory/codebase/api/lagoon_local/`
+- `docs/memory/codebase/api/lagoon_local/transcription/`
+- `docs/memory/codebase/api/lagoon_local/transcript_chunks/`
 - `docs/memory/codebase/web/src/media-import/index.md`
 
 Editable scope roots:
@@ -100,6 +102,8 @@ Keep optional skills closed unless a security or validation trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
+Validate that transcript chunks preserve source transcript segments, `mediaArtifactId`, absolute `startMs`/`endMs`, and durable artifact references.
+Block downstream phases if evidence depends on browser object URLs or provider-relative timestamps without absolute lecture offsets.
 
 Return:
 - summary

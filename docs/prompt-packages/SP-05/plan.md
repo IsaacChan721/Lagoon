@@ -13,18 +13,19 @@ Execute in `caveman full`. Use normal prose only when clarity or safety would su
 
 ## Goal
 
-Build simple local lecture memory and retrieval.
+Build local lecture memory and retrieval over SP-03 RAG-ready transcript chunks.
 
 ## Inputs
 
 - `docs/plans/main-orchestration.md`
 - `docs/memory/index.md`
 - `docs/memory/phases/SP-05/index.md`
-- transcript, summary, and storage memory notes
+- transcript chunk, visual support, provenance, and storage memory notes
 
 ## In Scope
 
-- Local text chunking and indexing.
+- Local indexing of SP-03 semantic transcript chunks.
+- Embedding-ready retrieval schema with local text-search fallback.
 - Retrieval over selected lecture artifacts.
 - Small eval fixtures and retrieval checks.
 - Citation-preserving result shape.
@@ -32,15 +33,15 @@ Build simple local lecture memory and retrieval.
 ## Out Of Scope
 
 - No tutor UX beyond retrieval contract.
-- No embeddings or vector database for MVP unless simple text search fails with evidence.
+- No required paid embeddings for MVP; embedding provider is optional behind config.
 - No cloud vector store.
 - No skill improvement loop.
 
 ## Execution Steps
 
-1. Confirm transcript artifacts are stable.
-2. Define local text index inputs and outputs.
-3. Implement chunking and simple local search/retrieval path.
+1. Confirm transcript and transcript chunk artifacts are stable.
+2. Define local index inputs and outputs around existing transcript chunk IDs.
+3. Implement local search/retrieval path over transcript chunks; add embedding fields/status without requiring embeddings.
 4. Add small held-out eval fixtures.
 5. Verify selected lecture filtering.
 6. Update memory for retrieval contracts.
@@ -48,6 +49,8 @@ Build simple local lecture memory and retrieval.
 ## Acceptance Criteria
 
 - Retrieval returns relevant lecture chunks with citations.
+- Retrieval does not rechunk transcript in a way that loses source segment IDs or timestamps.
+- Retrieval output preserves `chunkId`, `segmentIds`, `mediaArtifactId`, `startMs`, and `endMs`.
 - Selected lecture boundary is enforced.
 - Eval fixture measures basic retrieval quality.
 - Local storage remains default.
@@ -66,9 +69,10 @@ Build simple local lecture memory and retrieval.
 
 ## Troubleshooting
 
-- If retrieval quality is low, inspect chunking before changing model.
+- If retrieval quality is low, inspect SP-03 transcript chunk boundaries before changing model or adding embeddings.
 - If citations are missing, block tutor phase.
 - If index drift appears, add deterministic fixture.
+- If embeddings are added, verify local-only storage, cost controls, rebuild behavior, and fallback search path.
 
 ## Lesson Plan
 
@@ -90,8 +94,8 @@ Every lesson below must be written and taught as a 60-90 minute beginner module,
 Each lesson must include concrete code or command examples. Prefer real snippets from this codebase once the phase exists. Avoid abstract-only examples. When a lesson covers safety, privacy, auth, encryption, destructive actions, or external providers, spell out the risk clearly and then return to concise style.
 ### Created In This Phase
 
-- Local text index over selected lecture artifacts.
-- Retrieval contract for relevant chunks with citations.
+- Local index over selected lecture transcript chunks.
+- Retrieval contract for relevant chunks with citations and optional embedding metadata.
 - Small eval fixtures and retrieval checks.
 - Index rebuild rules and drift checks.
 
@@ -99,24 +103,24 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 - Prerequisites: none.
 - Explain: retrieval finds the best lecture chunks for a user question before any tutor answer.
-- Coding example: show a query returning `chunkText`, `score`, `citation`, and `lectureId`.
+- Coding example: show a query returning `chunkId`, `chunkText`, `score`, `citation`, `lectureId`, and `timeRange`.
 - Theory Q/A: Why retrieve before answering? It grounds responses in selected lecture evidence.
 - Key takeaways: retrieval is evidence selection, not final tutoring.
 
 ### Lesson 2: Local Indexing
 
 - Prerequisites: understand retrieval result shape.
-- Explain: local index stores searchable text chunks from transcript or summary artifacts.
-- Coding example: show pseudocode for `indexLectureText(lectureId, chunks)` and `searchLectureText(lectureId, query)`.
-- Theory Q/A: Why use simple text search first? MVP should prove the retrieval contract before adding embeddings, vector stores, or provider complexity.
-- Key takeaways: every search needs scope, chunk IDs, and citations; vector search is a later optimization.
+- Explain: local index stores SP-03 transcript chunks and keeps an embedding-ready schema.
+- Coding example: show pseudocode for `indexTranscriptChunks(lectureId, chunks)` and `searchLectureChunks(lectureId, query)`.
+- Theory Q/A: Why keep text-search fallback? It proves retrieval and citation contracts without requiring paid embeddings.
+- Key takeaways: every search needs scope, chunk IDs, timestamps, and citations; embeddings are an optimization path, not a schema rewrite.
 
 ### Lesson 3: Eval Fixtures
 
 - Prerequisites: understand indexing.
 - Explain: eval fixtures ask known questions and check whether expected chunks return.
 - Coding example: show a fixture with `question`, `expectedChunkId`, and `minScore`.
-- Theory Q/A: Why inspect chunking before changing model? Bad chunks make even strong retrieval look weak.
+- Theory Q/A: Why inspect SP-03 chunking before changing model? Bad transcript chunks make even strong embedding retrieval look weak.
 - Key takeaways: deterministic evals make retrieval quality visible over time.
 
 ### Lesson 4: Tutor Contract
@@ -129,7 +133,7 @@ Each lesson must include concrete code or command examples. Prefer real snippets
 
 ## Memory Updates
 
-Update `docs/memory/phases/SP-05/index.md` and codebase notes for local retrieval contracts, evals, and selected lecture filtering.
+Update `docs/memory/phases/SP-05/index.md` and codebase notes for transcript chunk retrieval contracts, optional embeddings, evals, and selected lecture filtering.
 
 ## Git Checkpoint
 

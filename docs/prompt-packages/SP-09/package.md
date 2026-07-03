@@ -53,6 +53,9 @@ Prerequisite files to read:
 - `docs/memory/codebase/web/index.md`
 - `docs/memory/codebase/api/index.md`
 - `docs/memory/codebase/scripts/index.md`
+- `docs/memory/codebase/api/lagoon_local/transcription/`
+- `docs/memory/codebase/api/lagoon_local/transcript_chunks/`
+- `docs/memory/codebase/api/lagoon_local/retrieval/`
 
 Editable scope roots:
 - `web/`
@@ -107,6 +110,7 @@ Keep optional skills closed unless a release or UI trigger appears.
 Use memory notes before reading broad source.
 Update memory notes for every generated or changed folder/component.
 Use the Dependency Scope section for prerequisite files, editable roots, reference-only roots, future roots, and memory mirrors. Do not use stale paths outside that scope unless the current phase plan explains why.
+Release audit must cover raw media, extracted audio, transcript artifacts, transcript chunks, embeddings if present, provider keys, temp files, logs, and tutor traces.
 
 Return:
 - summary
