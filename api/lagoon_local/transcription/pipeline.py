@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 from dataclasses import dataclass
+from pathlib import Path
 from uuid import uuid4
 
 from lagoon_local.jobs.retry import run_with_retry
@@ -10,7 +12,7 @@ from lagoon_local.media.audio import normalize_audio_for_transcription
 from lagoon_local.storage import LocalStorageBoundary
 from lagoon_local.transcript_chunks.chunker import build_transcript_chunks
 from lagoon_local.transcription.chunking import plan_media_chunks
-from lagoon_local.transcription.provider import TranscriptionProvider
+from lagoon_local.transcription.provider import TranscriptionProvider, create_transcription_provider
 from lagoon_local.transcription.stitching import stitch_provider_segments
 
 
@@ -18,18 +20,22 @@ from lagoon_local.transcription.stitching import stitch_provider_segments
 class TranscriptionPipelineResult:
     transcript_artifact_id: str
     transcript_chunks_artifact_id: str
-    transcript_artifact_path: object
-    transcript_chunks_path: object
+    transcript_artifact_path: Path
+    transcript_chunks_path: Path
 
 
 def transcribe_media_artifact(
     storage_boundary: LocalStorageBoundary,
     lecture_id: str,
     media_artifact_id: str,
-    provider: TranscriptionProvider,
+    provider: TranscriptionProvider | None = None,
+    provider_name: str | None = None,
     transcript_chunk_max_chars: int = 1_200,
 ) -> TranscriptionPipelineResult:
     layout = storage_boundary.ensure_layout()
+    if provider is None:
+        selected_provider = provider_name or os.environ.get("LAGOON_TRANSCRIPTION_PROVIDER", "dry-run")
+        provider = create_transcription_provider(selected_provider)
     normalized_audio = normalize_audio_for_transcription(storage_boundary, media_artifact_id)
     transcript_artifact_id = f"transcript-{uuid4()}"
     transcript_chunks_artifact_id = f"transcript-chunks-{uuid4()}"
@@ -108,8 +114,8 @@ def _record_outputs(
     media_artifact_id: str,
     transcript_artifact_id: str,
     transcript_chunks_artifact_id: str,
-    transcript_path: object,
-    chunks_path: object,
+    transcript_path: Path,
+    chunks_path: Path,
     provider_name: str,
 ) -> None:
     layout = storage_boundary.ensure_layout()

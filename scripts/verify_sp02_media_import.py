@@ -76,6 +76,7 @@ def assert_frontend_media_import_contract() -> None:
     assert "URL.revokeObjectURL" in hook_source
     assert "loadedmetadata" in hook_source
     assert "objectUrlRef" in hook_source
+    assert "importTokenRef" in hook_source
     assert "accept={acceptedMediaInput}" in panel_source
     assert "<video" in panel_source
     assert "<audio" in panel_source

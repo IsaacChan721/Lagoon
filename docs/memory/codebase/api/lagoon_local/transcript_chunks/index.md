@@ -22,7 +22,8 @@
 
 - Every chunk keeps `mediaArtifactId`, `transcriptArtifactId`, `segmentIds`, `startMs`, `endMs`, `boundaryReason`, and `embeddingStatus`.
 - Sentence/segment/pause boundaries are preferred.
-- Mid-sentence splitting only happens when `max_chars` forces it; such chunks use `forced-size-limit`.
+- Mid-sentence splitting only happens when `max_chars` forces it; word boundaries are preserved when possible, and such chunks use `forced-size-limit`.
+- `max_chars` must be positive and `pause_boundary_ms` cannot be negative.
 
 ## Gotchas
 

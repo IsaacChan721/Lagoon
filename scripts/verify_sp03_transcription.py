@@ -120,6 +120,46 @@ def assert_stitching_preserves_absolute_timestamps_and_source_ids() -> None:
     assert all(segment.media_artifact_id == "media-1" for segment in stitched)
 
 
+def assert_provider_segment_validation_is_strict() -> None:
+    schema = importlib.import_module("lagoon_local.transcription.schema")
+    stitching = importlib.import_module("lagoon_local.transcription.stitching")
+
+    chunk = schema.MediaChunk("media-1-media-0000", "media-1", Path("a.wav"), 0, 0, 10_000, "whole-media")
+    stitched = stitching.stitch_provider_segments(
+        lecture_id="lecture-1",
+        media_artifact_id="media-1",
+        transcript_artifact_id="tx-1",
+        media_chunks=[chunk],
+        provider_segments_by_chunk_id={
+            "media-1-media-0000": [
+                {"id": "blank", "startMs": 0, "endMs": 1000, "text": "   "},
+                {"id": "good", "startMs": 1000, "endMs": 2000, "text": "Real text."},
+            ]
+        },
+        provider_name="fixture",
+    )
+    assert [segment.source_segment_id for segment in stitched] == ["good"]
+
+    for bad_segment in [
+        {"startMs": 0, "endMs": 1000, "text": "Missing id."},
+        {"id": "bad-time", "startMs": 1000, "endMs": 1000, "text": "Bad time."},
+        {"id": "bad-start", "startMs": "nope", "endMs": 1000, "text": "Bad start."},
+    ]:
+        try:
+            stitching.stitch_provider_segments(
+                lecture_id="lecture-1",
+                media_artifact_id="media-1",
+                transcript_artifact_id="tx-1",
+                media_chunks=[chunk],
+                provider_segments_by_chunk_id={"media-1-media-0000": [bad_segment]},
+                provider_name="fixture",
+            )
+        except ValueError:
+            pass
+        else:
+            raise AssertionError(f"invalid provider segment was accepted: {bad_segment}")
+
+
 def assert_transcript_chunks_preserve_boundaries_and_provenance() -> None:
     schema = importlib.import_module("lagoon_local.transcription.schema")
     chunker = importlib.import_module("lagoon_local.transcript_chunks.chunker")
@@ -199,6 +239,9 @@ def assert_transcript_chunks_preserve_boundaries_and_provenance() -> None:
     )
     assert len(forced) > 1
     assert any(chunk.boundary_reason == "forced-size-limit" for chunk in forced)
+    assert all(len(chunk.text) <= 40 for chunk in forced)
+    assert all(chunk.text == chunk.text.strip() for chunk in forced)
+    assert all(set(chunk.text.split()) == {"word"} for chunk in forced)
 
 
 def assert_retry_policy_classifies_failures() -> None:
@@ -261,6 +304,56 @@ def assert_fixture_transcription_path_writes_artifacts() -> None:
         assert chunk_rows == [(result.transcript_chunks_artifact_id, result.transcript_artifact_id)]
 
 
+def assert_local_whisper_cpp_provider_uses_free_cli_contract() -> None:
+    provider_module = importlib.import_module("lagoon_local.transcription.provider")
+    schema = importlib.import_module("lagoon_local.transcription.schema")
+
+    with tempfile.TemporaryDirectory(prefix="lagoon-sp03-local-whisper-") as tmp:
+        root = Path(tmp)
+        fake_cli = root / "fake_whisper_cpp.py"
+        fake_model = root / "ggml-tiny.en.bin"
+        audio = root / "chunk.wav"
+        fake_model.write_bytes(b"model")
+        audio.write_bytes(b"wav")
+        fake_cli.write_text(
+            "\n".join(
+                [
+                    "from __future__ import annotations",
+                    "import json",
+                    "import sys",
+                    "from pathlib import Path",
+                    "output_base = Path(sys.argv[sys.argv.index('-of') + 1])",
+                    "payload = {",
+                    "    'transcription': [",
+                    "        {'timestamps': {'from': '00:00:00.500', 'to': '00:00:01.250'}, 'text': 'Local free segment.'},",
+                    "        {'timestamps': {'from': '00:00:02.000', 'to': '00:00:03.000'}, 'text': 'Second local segment.'},",
+                    "    ]",
+                    "}",
+                    "output_base.with_suffix('.json').write_text(json.dumps(payload), encoding='utf-8')",
+                ]
+            ),
+            encoding="utf-8",
+        )
+
+        provider = provider_module.LocalWhisperCppProvider(
+            binary_path=sys.executable,
+            model_path=fake_model,
+            extra_args=[str(fake_cli)],
+        )
+        segments = provider.transcribe_chunk(
+            schema.MediaChunk("media-1-media-0000", "media-1", audio, 0, 0, 5_000, "whole-media")
+        )
+
+    assert provider.name == "local-whisper-cpp"
+    assert provider.model == str(fake_model)
+    assert provider.diarization_status == "skipped"
+    assert segments == [
+        {"id": "media-1-media-0000-local-0000", "startMs": 500, "endMs": 1250, "text": "Local free segment."},
+        {"id": "media-1-media-0000-local-0001", "startMs": 2000, "endMs": 3000, "text": "Second local segment."},
+    ]
+    assert provider_module.create_transcription_provider("dry-run").name == "dry-run"
+
+
 def assert_live_call_gate_is_explicit() -> None:
     has_key = bool(os.environ.get("OPENAI_API_KEY"))
     sample = ROOT / "docs" / "lessons" / "fixtures" / "sp03-sample.m4a"
@@ -275,9 +368,11 @@ def main() -> None:
     assert_media_chunking_contract()
     assert_audio_normalization_uses_durable_media_artifact()
     assert_stitching_preserves_absolute_timestamps_and_source_ids()
+    assert_provider_segment_validation_is_strict()
     assert_transcript_chunks_preserve_boundaries_and_provenance()
     assert_retry_policy_classifies_failures()
     assert_fixture_transcription_path_writes_artifacts()
+    assert_local_whisper_cpp_provider_uses_free_cli_contract()
     assert_live_call_gate_is_explicit()
     print("SP-03 media transcription verification passed")
 

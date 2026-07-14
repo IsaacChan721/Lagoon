@@ -10,6 +10,7 @@ Vite React TypeScript local app shell.
 - `package.json`
 - `tsconfig.json`
 - `src/`
+- Inline favicon data URL in `index.html` to avoid dev-server `/favicon.ico` 404 noise.
 
 ## Key Files
 
@@ -32,6 +33,7 @@ Vite React TypeScript local app shell.
 
 - `npm run build:web`
 - Scoped HTTP smoke against Vite dev server.
+- Browser E2E smoke against `http://127.0.0.1:5173`: initial render, unsupported file, supported audio metadata failure, save, reset, and mobile overflow.
 - `npm run verify:sp02`
 
 ## Gotchas
@@ -43,3 +45,4 @@ Vite React TypeScript local app shell.
 ## Last Updated
 
 SP-02
+E2E hardening pass, 2026-07-14

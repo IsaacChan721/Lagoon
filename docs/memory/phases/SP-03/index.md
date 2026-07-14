@@ -15,7 +15,7 @@ Track media inspection, audio extraction, provider-limit media chunking, transcr
 ## Implemented In SP-03
 
 - Added durable media artifact audio normalization in `api/lagoon_local/media/audio.py`.
-- Added transcription schema, media chunk planner, provider adapter shells, stitcher, and pipeline under `api/lagoon_local/transcription/`.
+- Added transcription schema, media chunk planner, provider adapter shells, local/free Whisper CLI provider, stitcher, and pipeline under `api/lagoon_local/transcription/`.
 - Added retry classification in `api/lagoon_local/jobs/retry.py`.
 - Added RAG-ready transcript chunker in `api/lagoon_local/transcript_chunks/chunker.py`.
 - Added local transcript output dirs to `StorageLayout`: `transcripts/` and `transcript_chunks/`.
@@ -37,11 +37,14 @@ Track media inspection, audio extraction, provider-limit media chunking, transcr
 - Split media only when provider payload limits, duration reliability, or codec handling requires it.
 - Split transcript into semantic RAG-ready chunks after stitching transcript segments.
 - Prefer sentence, pause, or transcript-segment boundaries. Never split mid-sentence unless size limits force it; record `boundaryReason` when forced.
+- When size limits force transcript splits, preserve word boundaries when possible and validate chunking knobs before work starts.
 - Store all transcript and chunk times as absolute offsets into original lecture media: `startMs` and `endMs`.
 - For provider media chunks, store `chunkStartMs` and convert returned provider-relative segment times into absolute lecture times.
+- Validate provider segment payloads before stitching: require provenance ID and increasing millisecond times; skip blank text segments.
 - Diarization is optional. Enable only when provider support, cost, and lecture format justify it; otherwise store speaker as unknown/null.
 - Provider-backed calls require explicit API configuration and current pricing check. Keep fixture/dry-run path available when credentials or sample media are missing.
-- SP-03 MVP uses `DryRunTranscriptionProvider` for deterministic, free verification.
+- SP-03 MVP uses `DryRunTranscriptionProvider` for deterministic verification and `LocalWhisperCppProvider` for free local transcription when `whisper.cpp` is installed.
+- Free local provider config uses `LAGOON_TRANSCRIPTION_PROVIDER=local-whisper-cpp`, `LAGOON_WHISPER_CPP_BINARY`, and `LAGOON_WHISPER_CPP_MODEL`.
 - OpenAI live adapter is a gated shell only. It does not call network until key, sample media, and explicit provider enablement exist.
 - Current OpenAI speech-to-text docs checked during SP-03: transcription snapshots include `gpt-4o-mini-transcribe`, `gpt-4o-transcribe`, and `gpt-4o-transcribe-diarize`; upload limit is 25 MB; supported formats include `mp3`, `mp4`, `mpeg`, `mpga`, `m4a`, `wav`, and `webm`.
 - Diarization is deferred. Use `gpt-4o-transcribe-diarize` only after cost/provider decision; docs say it supports `diarized_json` and needs `chunking_strategy` for audio longer than 30 seconds.
@@ -52,6 +55,8 @@ Track media inspection, audio extraction, provider-limit media chunking, transcr
 - Green: `npm run verify:sp03`.
 - Green: `npm run verify:sp02`.
 - Green: `npm run verify:sp01`.
+- Green: `npm run build:web`.
+- Green: Browser E2E smoke against Vite dev server for import, save, reset, and mobile overflow.
 - Fixture live-call gate documented: `OPENAI_API_KEY` or sample media missing, so no paid provider call ran.
 
 ## Failure States
@@ -65,10 +70,12 @@ Track media inspection, audio extraction, provider-limit media chunking, transcr
 | Timeout or connection reset | `network` | Yes, bounded |
 | Unknown provider failure | `unknown` | Yes, bounded |
 
-## Release Caveat
+## Free MVP Provider Decision
 
-- `api/lagoon_local/media/` is currently ignored by the existing root `.gitignore` pattern `media/`.
-- The code exists locally and `npm run verify:sp03` passes, but a future commit needs either a scoped `.gitignore` exception or a package rename before the media helper can be staged.
+- Chosen free path: `whisper.cpp` CLI adapter.
+- Reason: open-source local Whisper inference, offline/on-device use, CPU support, Windows support, JSON output, and simple command boundary.
+- MVP does not vendor binaries or models. User installs `whisper.cpp` and downloads a local `ggml` model.
+- Future iteration can switch provider name from `local-whisper-cpp` to `openai` without changing transcript/chunk artifact schemas.
 
 ## Transcript Chunk Shape
 

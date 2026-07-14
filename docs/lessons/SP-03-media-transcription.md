@@ -56,7 +56,7 @@ Care because later RAG must cite exact lecture time. Transcript is structured da
 | --- | --- | --- |
 | `api/lagoon_local/media/audio.py` | Resolve media artifact and make transcription-ready audio. | Browser preview URLs. |
 | `api/lagoon_local/transcription/schema.py` | Shared dataclasses. | Provider calls. |
-| `api/lagoon_local/transcription/pipeline.py` | End-to-end fixture/live adapter flow. | Visual analysis. |
+| `api/lagoon_local/transcription/pipeline.py` | End-to-end fixture/free-local/live adapter flow. | Visual analysis. |
 
 ### Code Reading
 
@@ -107,6 +107,7 @@ Answer: SP-03 found SQLite row but copied file is gone. Re-import media or repai
 | Why keep source provider ID? | It lets debugging compare Lagoon segment to provider output. |
 | Why audio first? | Lecture speech usually carries primary teaching content. |
 | Why no visual enrichment here? | SP-04 owns visuals. Scope stays small. |
+| Why reject missing provider IDs? | Missing provenance makes transcript debugging and citations weak. |
 
 ### Checkpoint
 
@@ -189,7 +190,7 @@ Provider calls can fail. Some failures are permanent, like auth. Some can be ret
 | File | Purpose |
 | --- | --- |
 | `jobs/retry.py` | Classifies auth, quota, network, payload, codec, unknown. |
-| `transcription/provider.py` | Dry-run provider and gated OpenAI adapter shell. |
+| `transcription/provider.py` | Dry-run provider, free local `whisper.cpp` provider, and gated OpenAI adapter shell. |
 
 ### Code Reading
 
@@ -199,6 +200,16 @@ if failure_kind in {"network", "unknown"} and attempt < max_attempts:
 ```
 
 Network/unknown can retry. Auth, quota, payload, and codec do not retry because repeating them wastes cost and hides setup errors.
+
+Free MVP provider setup:
+
+```powershell
+$env:LAGOON_TRANSCRIPTION_PROVIDER = "local-whisper-cpp"
+$env:LAGOON_WHISPER_CPP_BINARY = "C:\tools\whisper.cpp\build\bin\Release\whisper-cli.exe"
+$env:LAGOON_WHISPER_CPP_MODEL = "C:\models\ggml-base.en.bin"
+```
+
+Then Lagoon can create a `LocalWhisperCppProvider` through the same provider protocol used by the future OpenAI adapter.
 
 ### Hands-On Exercise
 
@@ -218,7 +229,8 @@ Answer: classify as auth, stop retry, ask for proper local key setup. Never ask 
 | Why retry unknown? | Some transient provider failures lack clean labels. |
 | Why limit retries? | Infinite retries can burn time and money. |
 | Why dry-run provider? | Tests stay free and deterministic. |
-| Why adapter shell? | Contract can exist before credentials. |
+| Why local `whisper.cpp` provider? | MVP can transcribe without API cost. |
+| Why adapter shell? | OpenAI can be swapped in later without changing artifacts. |
 
 ### Checkpoint
 
@@ -249,11 +261,12 @@ Provider chunk timestamps are relative to uploaded chunk. Lagoon needs absolute 
 ### Code Reading
 
 ```python
-start_ms = int(provider_segment["startMs"]) + chunk.start_ms
-end_ms = int(provider_segment["endMs"]) + chunk.start_ms
+start_ms = _required_ms(provider_segment, "startMs") + chunk.start_ms
+end_ms = _required_ms(provider_segment, "endMs") + chunk.start_ms
 ```
 
 If provider says segment starts at `250 ms` inside a chunk that began at `10,000 ms`, Lagoon stores `10,250 ms`.
+Blank provider text is skipped. Missing provider IDs, missing times, non-numeric times, or `endMs <= startMs` raise clear `ValueError`s.
 
 ### Hands-On Exercise
 
@@ -274,6 +287,7 @@ Answer: inspect `chunk.start_ms`; if it is missing or in seconds instead of mill
 | Why absolute times? | Later phases share one media timeline. |
 | Why keep media chunks in transcript artifact? | Debugging provider offsets. |
 | Why no encryption here? | SP-01 vault encryption remains separate; this MVP stores local media artifacts. |
+| Why validate before stitching? | Bad provider payloads should fail before corrupt transcript artifacts. |
 
 ### Checkpoint
 
@@ -321,9 +335,9 @@ Read `assert_transcript_chunks_preserve_boundaries_and_provenance`. Notice pause
 
 ### Debugging Exercise
 
-Failure: chunk text ends mid-sentence.
+Failure: chunk text splits a normal word.
 
-Answer: use sentence or segment boundaries first. Only split inside sentence when `max_chars` forces it, and mark `forced-size-limit`.
+Answer: use sentence or segment boundaries first. When `max_chars` forces an internal split, preserve word boundaries where possible and mark `forced-size-limit`.
 
 ### Theory Q/A
 
@@ -334,6 +348,7 @@ Answer: use sentence or segment boundaries first. Only split inside sentence whe
 | Why keep `segmentIds`? | Later answers cite source transcript. |
 | Why keep `mediaArtifactId`? | Cross-phase provenance. |
 | Why `embeddingStatus: pending`? | Embeddings are later phase work. |
+| Why validate `max_chars`? | Zero or negative sizes would make forced splitting unsafe. |
 
 ### Checkpoint
 

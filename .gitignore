@@ -18,11 +18,11 @@ lagoon-data/
 *.db
 *.db-wal
 *.db-shm
-vault/
-media/
+/vault/
+/media/
 *.webm
-transcripts/
-embeddings/
+/transcripts/
+/embeddings/
 
 # Local secrets
 .env

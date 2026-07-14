@@ -16,6 +16,11 @@ def build_transcript_chunks(
     max_chars: int = 1_200,
     pause_boundary_ms: int = 1_500,
 ) -> list[TranscriptChunk]:
+    if max_chars <= 0:
+        raise ValueError("max_chars must be positive")
+    if pause_boundary_ms < 0:
+        raise ValueError("pause_boundary_ms cannot be negative")
+
     chunks: list[TranscriptChunk] = []
     current: list[TranscriptSegment] = []
 
@@ -99,7 +104,7 @@ def _split_oversized_segment(
             if buffer:
                 chunks.append(_text_chunk(start_index + len(chunks), lecture_id, media_artifact_id, transcript_artifact_id, segment, buffer, "sentence-boundary"))
                 buffer = ""
-            for index in range(0, len(sentence), max_chars):
+            for part in _split_long_text(sentence, max_chars):
                 chunks.append(
                     _text_chunk(
                         start_index + len(chunks),
@@ -107,7 +112,7 @@ def _split_oversized_segment(
                         media_artifact_id,
                         transcript_artifact_id,
                         segment,
-                        sentence[index : index + max_chars].strip(),
+                        part,
                         "forced-size-limit",
                     )
                 )
@@ -121,6 +126,29 @@ def _split_oversized_segment(
     if buffer:
         chunks.append(_text_chunk(start_index + len(chunks), lecture_id, media_artifact_id, transcript_artifact_id, segment, buffer, "end-of-segment"))
     return chunks
+
+
+def _split_long_text(text: str, max_chars: int) -> list[str]:
+    chunks: list[str] = []
+    buffer = ""
+    for word in text.split():
+        if len(word) > max_chars:
+            if buffer:
+                chunks.append(buffer)
+                buffer = ""
+            chunks.extend(word[index : index + max_chars] for index in range(0, len(word), max_chars))
+            continue
+
+        candidate = word if not buffer else f"{buffer} {word}"
+        if len(candidate) <= max_chars:
+            buffer = candidate
+        else:
+            chunks.append(buffer)
+            buffer = word
+
+    if buffer:
+        chunks.append(buffer)
+    return chunks or [text[:max_chars]]
 
 
 def _text_chunk(

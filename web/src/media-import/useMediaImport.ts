@@ -11,9 +11,11 @@ import {
 export function useMediaImport() {
   const [state, setState] = useState<MediaImportState>(initialMediaImportState);
   const objectUrlRef = useRef<string | null>(null);
+  const importTokenRef = useRef(0);
 
   useEffect(() => {
     return () => {
+      importTokenRef.current += 1;
       cleanupObjectUrl();
     };
   }, []);
@@ -26,6 +28,8 @@ export function useMediaImport() {
   }
 
   async function importFile(file: File | null) {
+    const importToken = importTokenRef.current + 1;
+    importTokenRef.current = importToken;
     cleanupObjectUrl();
 
     if (!file) {
@@ -68,6 +72,11 @@ export function useMediaImport() {
     }
 
     const durationMs = await loadDurationMs(objectUrl, support.kind);
+    if (importToken !== importTokenRef.current) {
+      URL.revokeObjectURL(objectUrl);
+      return;
+    }
+
     const artifact = createUploadedMediaArtifact({
       file,
       objectUrl,
@@ -97,6 +106,7 @@ export function useMediaImport() {
   }
 
   function resetImport() {
+    importTokenRef.current += 1;
     cleanupObjectUrl();
     setState(initialMediaImportState);
   }

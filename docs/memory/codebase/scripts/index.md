@@ -38,7 +38,8 @@ Repository verification scripts.
 
 - Self-run by `npm run verify:sp01`.
 - SP-02 Lecture Media Import verifier runs by `npm run verify:sp02`.
-- SP-03 media transcription verifier runs by `npm run verify:sp03`.
+- SP-02 verifier also checks stale async import protection in `useMediaImport.ts`.
+- SP-03 media transcription verifier runs by `npm run verify:sp03`, including fake-CLI coverage for the free local `whisper.cpp` provider adapter, provider segment validation, and word-safe forced transcript splitting.
 
 ## Gotchas
 
@@ -48,3 +49,4 @@ Repository verification scripts.
 
 SP-02
 SP-03
+E2E hardening pass, 2026-07-14

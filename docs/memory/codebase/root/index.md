@@ -23,6 +23,7 @@ Owns workspace scripts, dependency lock, git ignore policy, and package workspac
 
 - `npm run verify:sp01`
 - `npm run verify:sp02`
+- `npm run verify:sp03`
 - `npm run test`
 - `npm run dev:web`
 - `npm run build:web`
@@ -37,6 +38,7 @@ Owns workspace scripts, dependency lock, git ignore policy, and package workspac
 
 - `npm run verify:sp01`
 - `npm run verify:sp02`
+- `npm run verify:sp03`
 - `npm run build:web`
 - `npm audit`
 
@@ -52,3 +54,4 @@ Owns workspace scripts, dependency lock, git ignore policy, and package workspac
 ## Last Updated
 
 Markdown presentation standard added after SP-02
+E2E hardening pass, 2026-07-14
