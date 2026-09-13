@@ -7,7 +7,7 @@
 
 | Area | Purpose | Start here |
 | --- | --- | --- |
-| Plans | The agreed build sequence and MVP boundaries | [MVP Build Plan](plans/mvp-build-plan.md) |
+| Plans | The agreed build sequence and MVP boundaries | [MVP Build Plan](plans/mvp-build-plan.md), [Controller Procedure](plans/mvp-controller-procedure.md), and [Readiness Audit](plans/mvp-plan-readiness-audit.md) |
 | Decisions | Short records for choices that would otherwise be rediscovered | `decisions/` |
 | Lessons | Beginner-friendly explanations of finished slices | `lessons/` |
 | Memory | Folder and component maps for future coding agents | `memory/` |
